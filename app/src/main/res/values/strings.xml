@@ -2,4 +2,10 @@
     <string name="app_name">Story App</string>
     <string name="story_app_logo">Story App Logo</string>
     <string name="login_activity">This is Login Activity</string>
+
+    <string name="welcome">Welcome to Story App!</string>
+    <string name="welcome_message">You can share your daily activity here then it will be seen by everyone around the world!</string>
+    <string name="login">Login</string>
+    <string name="sign_up">Sign Up</string>
+    <string name="copyright">©2022 Muhammad Fauzi Maulana</string>
 </resources>

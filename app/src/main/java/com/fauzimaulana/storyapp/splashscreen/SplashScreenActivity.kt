@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.os.Handler
 import com.fauzimaulana.storyapp.R
 import com.fauzimaulana.storyapp.login.LoginActivity
+import com.fauzimaulana.storyapp.welcome.WelcomeActivity
 
 class SplashScreenActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -14,7 +15,7 @@ class SplashScreenActivity : AppCompatActivity() {
 
         val screenTime = 3000L
         Handler(mainLooper).postDelayed({
-            val intent = Intent(this, LoginActivity::class.java)
+            val intent = Intent(this, WelcomeActivity::class.java)
             startActivity(intent)
             finish()
         }, screenTime)
