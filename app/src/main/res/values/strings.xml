@@ -8,4 +8,10 @@
     <string name="login">Login</string>
     <string name="sign_up">Sign Up</string>
     <string name="copyright">©2022 Muhammad Fauzi Maulana</string>
+    <string name="image_write_the_story">Image write the story</string>
+    <string name="message_login_page">Please input your correct data</string>
+    <string name="email">Email</string>
+    <string name="password">Password</string>
+    <string name="hint_email">Enter your email address</string>
+    <string name="hint_password">Enter your password</string>
 </resources>
