@@ -1,4 +1,4 @@
-package com.fauzimaulana.storyapp.welcome
+package com.fauzimaulana.storyapp.view.welcome
 
 import android.animation.AnimatorSet
 import android.animation.ObjectAnimator
@@ -10,8 +10,8 @@ import android.view.View
 import android.view.WindowInsets
 import android.view.WindowManager
 import com.fauzimaulana.storyapp.databinding.ActivityWelcomeBinding
-import com.fauzimaulana.storyapp.login.LoginActivity
-import com.fauzimaulana.storyapp.signup.SignUpActivity
+import com.fauzimaulana.storyapp.view.login.LoginActivity
+import com.fauzimaulana.storyapp.view.signup.SignUpActivity
 import kotlin.math.log
 
 class WelcomeActivity : AppCompatActivity() {

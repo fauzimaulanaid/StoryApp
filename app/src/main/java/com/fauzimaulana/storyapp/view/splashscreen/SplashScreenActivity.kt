@@ -1,12 +1,12 @@
-package com.fauzimaulana.storyapp.splashscreen
+package com.fauzimaulana.storyapp.view.splashscreen
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
 import com.fauzimaulana.storyapp.R
-import com.fauzimaulana.storyapp.login.LoginActivity
-import com.fauzimaulana.storyapp.welcome.WelcomeActivity
+import com.fauzimaulana.storyapp.view.login.LoginActivity
+import com.fauzimaulana.storyapp.view.welcome.WelcomeActivity
 
 class SplashScreenActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {

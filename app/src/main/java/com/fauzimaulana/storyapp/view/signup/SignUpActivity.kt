@@ -1,4 +1,4 @@
-package com.fauzimaulana.storyapp.login
+package com.fauzimaulana.storyapp.view.signup
 
 import android.animation.AnimatorSet
 import android.animation.ObjectAnimator
@@ -8,16 +8,17 @@ import android.os.Bundle
 import android.view.View
 import android.view.WindowInsets
 import android.view.WindowManager
-import com.fauzimaulana.storyapp.databinding.ActivityLoginBinding
+import com.fauzimaulana.storyapp.R
+import com.fauzimaulana.storyapp.databinding.ActivitySignUpBinding
 
-class LoginActivity : AppCompatActivity() {
+class SignUpActivity : AppCompatActivity() {
 
-    private var _binding: ActivityLoginBinding? = null
+    private var _binding: ActivitySignUpBinding? = null
     private val binding get() = _binding!!
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        _binding = ActivityLoginBinding.inflate(layoutInflater)
+        _binding = ActivitySignUpBinding.inflate(layoutInflater)
         setContentView(binding.root)
         setupView()
         playAnimation()
@@ -37,17 +38,19 @@ class LoginActivity : AppCompatActivity() {
     }
 
     private fun playAnimation() {
-        val image = ObjectAnimator.ofFloat(binding.imageViewStory, View.ALPHA, 1f).setDuration(500)
-        val login = ObjectAnimator.ofFloat(binding.loginTextView, View.ALPHA, 1f).setDuration(500)
+        val image = ObjectAnimator.ofFloat(binding.imageView, View.ALPHA, 1f).setDuration(500)
+        val signup = ObjectAnimator.ofFloat(binding.signupTextView, View.ALPHA, 1f).setDuration(500)
+        val name = ObjectAnimator.ofFloat(binding.nameTextView, View.ALPHA, 1f).setDuration(500)
+        val nameInput = ObjectAnimator.ofFloat(binding.nameEditTextLayout, View.ALPHA, 1f).setDuration(500)
         val email = ObjectAnimator.ofFloat(binding.emailTextView, View.ALPHA, 1f).setDuration(500)
         val emailInput = ObjectAnimator.ofFloat(binding.emailEditTextLayout, View.ALPHA, 1f).setDuration(500)
         val password = ObjectAnimator.ofFloat(binding.passwordTextView, View.ALPHA, 1f).setDuration(500)
         val passwordInput = ObjectAnimator.ofFloat(binding.passwordEditTextLayout, View.ALPHA, 1f).setDuration(500)
-        val loginButton = ObjectAnimator.ofFloat(binding.loginButton, View.ALPHA, 1f).setDuration(500)
+        val signupButton = ObjectAnimator.ofFloat(binding.signupButton, View.ALPHA, 1f).setDuration(500)
         val copyright = ObjectAnimator.ofFloat(binding.copyright, View.ALPHA, 1f).setDuration(500)
 
         AnimatorSet().apply {
-            playSequentially(image, login, email, emailInput, password, passwordInput, loginButton, copyright)
+            playSequentially(image, signup, name, nameInput, email, emailInput, password, passwordInput, signupButton, copyright)
             startDelay = 500
             start()
         }
