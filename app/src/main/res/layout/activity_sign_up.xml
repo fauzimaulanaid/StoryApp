@@ -27,6 +27,7 @@
             android:layout_marginEnd="32dp"
             android:layout_marginTop="16dp"
             android:contentDescription="@string/image_write_the_story"
+            android:alpha="0"
             app:srcCompat="@drawable/laptop"
             app:layout_constraintBottom_toTopOf="@id/guidelineHorizontal"
             app:layout_constraintStart_toStartOf="parent"
@@ -45,6 +46,7 @@
             android:textColor="@color/black"
             android:textSize="20sp"
             android:textStyle="bold"
+            android:alpha="0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
@@ -58,6 +60,7 @@
             android:layout_marginTop="8dp"
             android:text="@string/name"
             android:textColor="@color/black"
+            android:alpha="0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/signupTextView"/>
 
@@ -68,6 +71,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="32dp"
             android:layout_marginEnd="32dp"
+            android:alpha="0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@id/nameTextView"
@@ -92,6 +96,7 @@
             android:layout_marginTop="8dp"
             android:text="@string/email"
             android:textColor="@color/black"
+            android:alpha="0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/nameEditTextLayout"/>
 
@@ -102,6 +107,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="32dp"
             android:layout_marginEnd="32dp"
+            android:alpha="0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@id/emailTextView"
@@ -126,6 +132,7 @@
             android:layout_marginTop="8dp"
             android:text="@string/password"
             android:textColor="@color/black"
+            android:alpha="0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/emailEditTextLayout"/>
 
@@ -136,6 +143,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="32dp"
             android:layout_marginEnd="32dp"
+            android:alpha="0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@id/passwordTextView"
@@ -155,13 +163,14 @@
         </com.google.android.material.textfield.TextInputLayout>
 
         <Button
-            android:id="@+id/loginButton"
+            android:id="@+id/signupButton"
             android:layout_width="0dp"
             android:layout_height="64dp"
             android:layout_marginStart="32dp"
             android:layout_marginEnd="32dp"
             android:layout_marginTop="32dp"
             android:text="@string/sign_up"
+            android:alpha="0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@id/passwordEditTextLayout"/>
@@ -173,9 +182,10 @@
             android:text="@string/copyright"
             android:textSize="11sp"
             android:layout_marginTop="16dp"
+            android:alpha="0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/loginButton"/>
+            app:layout_constraintTop_toBottomOf="@id/signupButton"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
