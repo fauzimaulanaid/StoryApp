@@ -32,4 +32,5 @@
     <string name="email_not_found">Email not found. Let\'s sign up for free</string>
     <string name="wrong_password">Incorrect password</string>
     <string name="login_success">Login success. Let\'s share your daily activity!</string>
+    <string name="hi">Hi %s!</string>
 </resources>

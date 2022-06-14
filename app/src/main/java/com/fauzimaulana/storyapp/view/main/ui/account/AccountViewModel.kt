@@ -1,13 +1,18 @@
 package com.fauzimaulana.storyapp.view.main.ui.account
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
+import androidx.lifecycle.*
+import com.fauzimaulana.storyapp.model.UserModel
+import com.fauzimaulana.storyapp.model.UserPreference
+import kotlinx.coroutines.launch
 
-class AccountViewModel : ViewModel() {
-
-    private val _text = MutableLiveData<String>().apply {
-        value = "This is dashboard Fragment"
+class AccountViewModel(private val pref: UserPreference) : ViewModel() {
+    fun getUser(): LiveData<UserModel> {
+        return pref.getUser().asLiveData()
     }
-    val text: LiveData<String> = _text
+
+    fun logout() {
+        viewModelScope.launch {
+            pref.logout()
+        }
+    }
 }
