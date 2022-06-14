@@ -28,4 +28,8 @@
     <string name="congratulations">Congratulations!</string>
     <string name="account_created">Your account has been created. You can login to story app now.</string>
     <string name="next">Next</string>
+
+    <string name="email_not_found">Email not found. Let\'s sign up for free</string>
+    <string name="wrong_password">Incorrect password</string>
+    <string name="login_success">Login success. Let\'s share your daily activity!</string>
 </resources>
