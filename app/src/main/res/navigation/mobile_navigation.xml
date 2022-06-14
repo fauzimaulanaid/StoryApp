@@ -14,12 +14,6 @@
     <fragment
         android:id="@+id/navigation_account"
         android:name="com.fauzimaulana.storyapp.view.main.ui.account.AccountFragment"
-        android:label="@string/title_dashboard"
+        android:label="@string/Account"
         tools:layout="@layout/fragment_account" />
-
-    <fragment
-        android:id="@+id/navigation_notifications"
-        android:name="com.fauzimaulana.storyapp.view.main.ui.notifications.NotificationsFragment"
-        android:label="@string/title_notifications"
-        tools:layout="@layout/fragment_notifications" />
 </navigation>
