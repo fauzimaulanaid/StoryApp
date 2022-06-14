@@ -16,4 +16,16 @@
     <string name="hint_password">Enter your password</string>
     <string name="name">Name</string>
     <string name="hint_name">Enter your name</string>
+    <string name="title_activity_main">MainActivity</string>
+    <string name="title_home">Home</string>
+    <string name="Account">Account</string>
+    <string name="logout">Logout</string>
+
+    <string name="name_error_message">Please input your name</string>
+    <string name="email_error_message">Please input your email</string>
+    <string name="password_error_message">Please input password that you want</string>
+
+    <string name="congratulations">Congratulations!</string>
+    <string name="account_created">Your account has been created. You can login to story app now.</string>
+    <string name="next">Next</string>
 </resources>

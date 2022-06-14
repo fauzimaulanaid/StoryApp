@@ -2,6 +2,7 @@ package com.fauzimaulana.storyapp.view.login
 
 import android.animation.AnimatorSet
 import android.animation.ObjectAnimator
+import android.content.Intent
 import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -9,6 +10,7 @@ import android.view.View
 import android.view.WindowInsets
 import android.view.WindowManager
 import com.fauzimaulana.storyapp.databinding.ActivityLoginBinding
+import com.fauzimaulana.storyapp.view.main.MainActivity
 
 class LoginActivity : AppCompatActivity() {
 
@@ -21,6 +23,7 @@ class LoginActivity : AppCompatActivity() {
         setContentView(binding.root)
         setupView()
         playAnimation()
+        setupAction()
     }
 
     private fun setupView() {
@@ -34,6 +37,13 @@ class LoginActivity : AppCompatActivity() {
             )
         }
         supportActionBar?.hide()
+    }
+
+    private fun setupAction() {
+        binding.loginButton.setOnClickListener {
+            val intent = Intent(this@LoginActivity, MainActivity::class.java)
+            startActivity(intent)
+        }
     }
 
     private fun playAnimation() {

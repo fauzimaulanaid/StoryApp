@@ -2,19 +2,32 @@ package com.fauzimaulana.storyapp.view.signup
 
 import android.animation.AnimatorSet
 import android.animation.ObjectAnimator
+import android.content.Context
 import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.view.WindowInsets
 import android.view.WindowManager
+import androidx.appcompat.app.AlertDialog
+import androidx.datastore.core.DataStore
+import androidx.datastore.preferences.core.Preferences
+import androidx.datastore.preferences.preferencesDataStore
+import androidx.lifecycle.ViewModelProvider
 import com.fauzimaulana.storyapp.R
 import com.fauzimaulana.storyapp.databinding.ActivitySignUpBinding
+import com.fauzimaulana.storyapp.model.UserModel
+import com.fauzimaulana.storyapp.model.UserPreference
+import com.fauzimaulana.storyapp.view.ViewModelFactory
+
+private val Context.dataStore: DataStore<Preferences> by preferencesDataStore(name = "settings")
 
 class SignUpActivity : AppCompatActivity() {
 
     private var _binding: ActivitySignUpBinding? = null
     private val binding get() = _binding!!
+
+    private lateinit var signUpViewModel: SignUpViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -22,6 +35,8 @@ class SignUpActivity : AppCompatActivity() {
         setContentView(binding.root)
         setupView()
         playAnimation()
+        setupViewModel()
+        setupAction()
     }
 
     private fun setupView() {
@@ -53,6 +68,44 @@ class SignUpActivity : AppCompatActivity() {
             playSequentially(image, signup, name, nameInput, email, emailInput, password, passwordInput, signupButton, copyright)
             startDelay = 500
             start()
+        }
+    }
+
+    private fun setupViewModel() {
+        signUpViewModel = ViewModelProvider(
+            this,
+            ViewModelFactory(UserPreference.getInstance(dataStore))
+        )[SignUpViewModel::class.java]
+    }
+
+    private fun setupAction() {
+        binding.signupButton.setOnClickListener {
+            val name = binding.nameEditText.text.toString()
+            val email = binding.emailEditText.text.toString()
+            val password = binding.passwordEditText.text.toString()
+            when {
+                name.isEmpty() -> {
+                    binding.nameEditTextLayout.error = resources.getString(R.string.name_error_message)
+                }
+                email.isEmpty() -> {
+                    binding.emailEditTextLayout.error = resources.getString(R.string.email_error_message)
+                }
+                password.isEmpty() -> {
+                    binding.passwordEditTextLayout.error = resources.getString(R.string.password_error_message)
+                }
+                else -> {
+                    signUpViewModel.saveUser(UserModel(name, email, password, false))
+                    AlertDialog.Builder(this).apply {
+                        setTitle(resources.getString(R.string.congratulations))
+                        setMessage(resources.getString(R.string.account_created))
+                        setPositiveButton(resources.getString(R.string.next)) {_, _ ->
+                            finish()
+                        }
+                        create()
+                        show()
+                    }
+                }
+            }
         }
     }
 }
