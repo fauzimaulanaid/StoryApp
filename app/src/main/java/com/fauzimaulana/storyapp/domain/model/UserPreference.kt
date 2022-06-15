@@ -1,16 +1,17 @@
-package com.fauzimaulana.storyapp.model
+package com.fauzimaulana.storyapp.domain.model
 
 import androidx.datastore.core.DataStore
 import androidx.datastore.preferences.core.Preferences
 import androidx.datastore.preferences.core.booleanPreferencesKey
 import androidx.datastore.preferences.core.edit
 import androidx.datastore.preferences.core.stringPreferencesKey
+import com.fauzimaulana.storyapp.domain.repository.IUserPreference
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 
-class UserPreference constructor(private val dataStore: DataStore<Preferences>) {
+class UserPreference constructor(private val dataStore: DataStore<Preferences>): IUserPreference {
 
-    fun getUser(): Flow<UserModel> {
+    override fun getUser(): Flow<UserModel> {
         return dataStore.data.map { preferences ->
             UserModel(
                 preferences[NAME_KEY] ?: "",
@@ -21,7 +22,7 @@ class UserPreference constructor(private val dataStore: DataStore<Preferences>) 
         }
     }
 
-    suspend fun saveUser(user: UserModel) {
+    override suspend fun saveUser(user: UserModel) {
         dataStore.edit { preferences ->
             preferences[NAME_KEY] = user.name
             preferences[EMAIL_KEY] = user.email
@@ -30,13 +31,13 @@ class UserPreference constructor(private val dataStore: DataStore<Preferences>) 
         }
     }
 
-    suspend fun login() {
+    override suspend fun login() {
         dataStore.edit { preferences ->
             preferences[STATE_KEY] = true
         }
     }
 
-    suspend fun logout() {
+    override suspend fun logout() {
         dataStore.edit { preferences ->
             preferences[STATE_KEY] = false
         }

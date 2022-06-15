@@ -1,23 +1,13 @@
 package com.fauzimaulana.storyapp.view.main.ui.home
 
-import android.content.Context
-import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.datastore.core.DataStore
-import androidx.datastore.preferences.core.Preferences
-import androidx.datastore.preferences.preferencesDataStore
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
-import com.fauzimaulana.storyapp.R
 import com.fauzimaulana.storyapp.databinding.FragmentHomeBinding
-import com.fauzimaulana.storyapp.model.UserPreference
 import com.fauzimaulana.storyapp.view.ViewModelFactory
-import com.fauzimaulana.storyapp.view.welcome.WelcomeActivity
-
-private val Context.dataStore: DataStore<Preferences> by preferencesDataStore(name = "settings")
 
 class HomeFragment : Fragment() {
 
@@ -41,9 +31,10 @@ class HomeFragment : Fragment() {
     }
 
     private fun setupViewModel() {
+        val factory = ViewModelFactory.getInstance(requireContext())
         homeViewModel = ViewModelProvider(
             requireActivity(),
-            ViewModelFactory(UserPreference.getInstance(requireContext().dataStore))
+            factory
         )[HomeViewModel::class.java]
     }
 

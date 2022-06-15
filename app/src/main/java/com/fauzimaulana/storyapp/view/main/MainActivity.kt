@@ -1,14 +1,10 @@
 package com.fauzimaulana.storyapp.view.main
 
-import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.widget.Toast
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import androidx.appcompat.app.AppCompatActivity
-import androidx.datastore.core.DataStore
-import androidx.datastore.preferences.core.Preferences
-import androidx.datastore.preferences.preferencesDataStore
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
@@ -16,11 +12,8 @@ import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import com.fauzimaulana.storyapp.R
 import com.fauzimaulana.storyapp.databinding.ActivityMainBinding
-import com.fauzimaulana.storyapp.model.UserPreference
 import com.fauzimaulana.storyapp.view.ViewModelFactory
 import com.fauzimaulana.storyapp.view.welcome.WelcomeActivity
-
-private val Context.dataStore: DataStore<Preferences> by preferencesDataStore(name = "settings")
 
 class MainActivity : AppCompatActivity() {
 
@@ -49,9 +42,10 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun setupViewModel() {
+        val factory = ViewModelFactory.getInstance(this)
         mainViewModel = ViewModelProvider(
             this,
-            ViewModelFactory(UserPreference.getInstance(dataStore))
+            factory
         )[MainViewModel::class.java]
 
         mainViewModel.getUser().observe(this) { user ->

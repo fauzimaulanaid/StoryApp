@@ -11,7 +11,7 @@ import androidx.datastore.preferences.preferencesDataStore
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.fauzimaulana.storyapp.databinding.FragmentAccountBinding
-import com.fauzimaulana.storyapp.model.UserPreference
+import com.fauzimaulana.storyapp.domain.model.UserPreference
 import com.fauzimaulana.storyapp.view.ViewModelFactory
 
 private val Context.dataStore: DataStore<Preferences> by preferencesDataStore(name = "settings")
@@ -39,9 +39,10 @@ class AccountFragment() : Fragment() {
     }
 
     private fun setupViewModel() {
+        val factory = ViewModelFactory.getInstance(requireContext())
         accountViewModel = ViewModelProvider(
             requireActivity(),
-            ViewModelFactory(UserPreference.getInstance(requireContext().dataStore))
+            factory
         )[AccountViewModel::class.java]
 
         accountViewModel.getUser().observe(viewLifecycleOwner) { user ->

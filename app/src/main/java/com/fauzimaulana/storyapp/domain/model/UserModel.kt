@@ -1,4 +1,4 @@
-package com.fauzimaulana.storyapp.model
+package com.fauzimaulana.storyapp.domain.model
 
 data class UserModel(
     val name: String,

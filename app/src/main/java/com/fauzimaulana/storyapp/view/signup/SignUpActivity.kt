@@ -2,7 +2,6 @@ package com.fauzimaulana.storyapp.view.signup
 
 import android.animation.AnimatorSet
 import android.animation.ObjectAnimator
-import android.content.Context
 import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -12,17 +11,11 @@ import android.view.WindowInsets
 import android.view.WindowManager
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
-import androidx.datastore.core.DataStore
-import androidx.datastore.preferences.core.Preferences
-import androidx.datastore.preferences.preferencesDataStore
 import androidx.lifecycle.ViewModelProvider
 import com.fauzimaulana.storyapp.R
 import com.fauzimaulana.storyapp.databinding.ActivitySignUpBinding
-import com.fauzimaulana.storyapp.model.UserModel
-import com.fauzimaulana.storyapp.model.UserPreference
+import com.fauzimaulana.storyapp.domain.model.UserModel
 import com.fauzimaulana.storyapp.view.ViewModelFactory
-
-private val Context.dataStore: DataStore<Preferences> by preferencesDataStore(name = "settings")
 
 class SignUpActivity : AppCompatActivity() {
 
@@ -74,9 +67,10 @@ class SignUpActivity : AppCompatActivity() {
     }
 
     private fun setupViewModel() {
+        val factory = ViewModelFactory.getInstance(this)
         signUpViewModel = ViewModelProvider(
             this,
-            ViewModelFactory(UserPreference.getInstance(dataStore))
+            factory
         )[SignUpViewModel::class.java]
     }
 

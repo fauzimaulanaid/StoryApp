@@ -2,7 +2,6 @@ package com.fauzimaulana.storyapp.view.login
 
 import android.animation.AnimatorSet
 import android.animation.ObjectAnimator
-import android.content.Context
 import android.content.Intent
 import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
@@ -11,18 +10,12 @@ import android.view.View
 import android.view.WindowInsets
 import android.view.WindowManager
 import androidx.appcompat.app.AlertDialog
-import androidx.datastore.core.DataStore
-import androidx.datastore.preferences.core.Preferences
-import androidx.datastore.preferences.preferencesDataStore
 import androidx.lifecycle.ViewModelProvider
 import com.fauzimaulana.storyapp.R
 import com.fauzimaulana.storyapp.databinding.ActivityLoginBinding
-import com.fauzimaulana.storyapp.model.UserModel
-import com.fauzimaulana.storyapp.model.UserPreference
+import com.fauzimaulana.storyapp.domain.model.UserModel
 import com.fauzimaulana.storyapp.view.ViewModelFactory
 import com.fauzimaulana.storyapp.view.main.MainActivity
-
-private val Context.datastore: DataStore<Preferences> by preferencesDataStore(name = "settings")
 
 class LoginActivity : AppCompatActivity() {
 
@@ -56,9 +49,10 @@ class LoginActivity : AppCompatActivity() {
     }
 
     private fun setupViewModel() {
+        val factory = ViewModelFactory.getInstance(this)
         loginViewModel = ViewModelProvider(
             this,
-            ViewModelFactory(UserPreference.getInstance(datastore))
+            factory
         )[LoginViewModel::class.java]
 
         loginViewModel.getUser().observe(this) { user ->

@@ -4,18 +4,18 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.asLiveData
 import androidx.lifecycle.viewModelScope
-import com.fauzimaulana.storyapp.model.UserModel
-import com.fauzimaulana.storyapp.model.UserPreference
+import com.fauzimaulana.storyapp.domain.model.UserModel
+import com.fauzimaulana.storyapp.domain.usecase.StoryUseCase
 import kotlinx.coroutines.launch
 
-class LoginViewModel(private val pref: UserPreference): ViewModel() {
+class LoginViewModel(private val storyUseCase: StoryUseCase): ViewModel() {
     fun getUser(): LiveData<UserModel> {
-        return pref.getUser().asLiveData()
+        return storyUseCase.getUser().asLiveData()
     }
 
     fun login() {
         viewModelScope.launch {
-            pref.login()
+            storyUseCase.login()
         }
     }
 }
