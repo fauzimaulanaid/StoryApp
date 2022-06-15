@@ -33,4 +33,9 @@
     <string name="wrong_password">Incorrect password</string>
     <string name="login_success">Login success. Let\'s share your daily activity!</string>
     <string name="hi">Hi %s!</string>
+
+    <string name="password_minimum_character">Password must at least 6 character</string>
+    <string name="wrong_email_format">Incorrect email format</string>
+
+    <string name="registration_failed">Registration cannot be proceed</string>
 </resources>

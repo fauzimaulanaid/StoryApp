@@ -6,9 +6,11 @@ import android.content.Context
 import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Patterns
 import android.view.View
 import android.view.WindowInsets
 import android.view.WindowManager
+import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.datastore.core.DataStore
 import androidx.datastore.preferences.core.Preferences
@@ -92,6 +94,9 @@ class SignUpActivity : AppCompatActivity() {
                 }
                 password.isEmpty() -> {
                     binding.passwordEditTextLayout.error = resources.getString(R.string.password_error_message)
+                }
+                password.length < 6 || !Patterns.EMAIL_ADDRESS.matcher(email).matches() -> {
+                    Toast.makeText(this, resources.getString(R.string.registration_failed), Toast.LENGTH_SHORT).show()
                 }
                 else -> {
                     signUpViewModel.saveUser(UserModel(name, email, password, false))
