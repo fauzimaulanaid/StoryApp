@@ -1,4 +1,4 @@
-package com.fauzimaulana.storyapp.view.customview
+package com.fauzimaulana.storyapp.core.customview
 
 import android.content.Context
 import android.text.Editable

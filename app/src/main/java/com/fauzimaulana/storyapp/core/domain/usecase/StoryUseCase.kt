@@ -1,9 +1,9 @@
-package com.fauzimaulana.storyapp.domain.repository
+package com.fauzimaulana.storyapp.core.domain.usecase
 
-import com.fauzimaulana.storyapp.domain.model.UserModel
+import com.fauzimaulana.storyapp.core.domain.model.UserModel
 import kotlinx.coroutines.flow.Flow
 
-interface IUserPreference {
+interface StoryUseCase {
     fun getUser(): Flow<UserModel>
 
     suspend fun saveUser(user: UserModel)

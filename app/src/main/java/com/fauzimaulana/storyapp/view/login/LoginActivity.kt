@@ -12,7 +12,7 @@ import android.view.WindowManager
 import androidx.appcompat.app.AlertDialog
 import com.fauzimaulana.storyapp.R
 import com.fauzimaulana.storyapp.databinding.ActivityLoginBinding
-import com.fauzimaulana.storyapp.domain.model.UserModel
+import com.fauzimaulana.storyapp.core.domain.model.UserModel
 import com.fauzimaulana.storyapp.view.main.MainActivity
 import org.koin.android.viewmodel.ext.android.viewModel
 

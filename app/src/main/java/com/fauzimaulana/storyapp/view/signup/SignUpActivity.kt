@@ -13,7 +13,7 @@ import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import com.fauzimaulana.storyapp.R
 import com.fauzimaulana.storyapp.databinding.ActivitySignUpBinding
-import com.fauzimaulana.storyapp.domain.model.UserModel
+import com.fauzimaulana.storyapp.core.domain.model.UserModel
 import org.koin.android.viewmodel.ext.android.viewModel
 
 class SignUpActivity : AppCompatActivity() {

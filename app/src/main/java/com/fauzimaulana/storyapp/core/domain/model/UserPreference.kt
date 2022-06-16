@@ -1,11 +1,11 @@
-package com.fauzimaulana.storyapp.domain.model
+package com.fauzimaulana.storyapp.core.domain.model
 
 import androidx.datastore.core.DataStore
 import androidx.datastore.preferences.core.Preferences
 import androidx.datastore.preferences.core.booleanPreferencesKey
 import androidx.datastore.preferences.core.edit
 import androidx.datastore.preferences.core.stringPreferencesKey
-import com.fauzimaulana.storyapp.domain.repository.IUserPreference
+import com.fauzimaulana.storyapp.core.domain.repository.IUserPreference
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 

@@ -1,9 +1,9 @@
 package com.fauzimaulana.storyapp
 
 import android.app.Application
-import com.fauzimaulana.storyapp.di.repositoryModule
-import com.fauzimaulana.storyapp.di.useCaseModule
-import com.fauzimaulana.storyapp.di.viewModelModule
+import com.fauzimaulana.storyapp.core.di.repositoryModule
+import com.fauzimaulana.storyapp.core.di.useCaseModule
+import com.fauzimaulana.storyapp.core.di.viewModelModule
 import org.koin.android.ext.koin.androidContext
 import org.koin.android.ext.koin.androidLogger
 import org.koin.core.context.startKoin

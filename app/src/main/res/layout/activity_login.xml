@@ -74,7 +74,7 @@
         app:layout_constraintTop_toBottomOf="@id/emailTextView"
         app:startIconDrawable="@drawable/ic_baseline_email_24">
 
-        <com.fauzimaulana.storyapp.view.customview.MyEmailEditText
+        <com.fauzimaulana.storyapp.core.customview.MyEmailEditText
             android:id="@+id/emailEditText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -111,7 +111,7 @@
         app:passwordToggleEnabled="true"
         app:startIconDrawable="@drawable/ic_baseline_lock_24">
 
-        <com.fauzimaulana.storyapp.view.customview.MyPasswordEditText
+        <com.fauzimaulana.storyapp.core.customview.MyPasswordEditText
             android:id="@+id/passwordEditText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
