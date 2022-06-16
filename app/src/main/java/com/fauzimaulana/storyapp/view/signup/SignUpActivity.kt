@@ -11,18 +11,17 @@ import android.view.WindowInsets
 import android.view.WindowManager
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
-import androidx.lifecycle.ViewModelProvider
 import com.fauzimaulana.storyapp.R
 import com.fauzimaulana.storyapp.databinding.ActivitySignUpBinding
 import com.fauzimaulana.storyapp.domain.model.UserModel
-import com.fauzimaulana.storyapp.view.ViewModelFactory
+import org.koin.android.viewmodel.ext.android.viewModel
 
 class SignUpActivity : AppCompatActivity() {
 
     private var _binding: ActivitySignUpBinding? = null
     private val binding get() = _binding!!
 
-    private lateinit var signUpViewModel: SignUpViewModel
+    private val signUpViewModel: SignUpViewModel by viewModel()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -30,7 +29,6 @@ class SignUpActivity : AppCompatActivity() {
         setContentView(binding.root)
         setupView()
         playAnimation()
-        setupViewModel()
         setupAction()
     }
 
@@ -64,14 +62,6 @@ class SignUpActivity : AppCompatActivity() {
             startDelay = 500
             start()
         }
-    }
-
-    private fun setupViewModel() {
-        val factory = ViewModelFactory.getInstance(this)
-        signUpViewModel = ViewModelProvider(
-            this,
-            factory
-        )[SignUpViewModel::class.java]
     }
 
     private fun setupAction() {

@@ -5,9 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
 import com.fauzimaulana.storyapp.R
-import com.fauzimaulana.storyapp.view.login.LoginActivity
 import com.fauzimaulana.storyapp.view.main.MainActivity
-import com.fauzimaulana.storyapp.view.welcome.WelcomeActivity
 
 class SplashScreenActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {

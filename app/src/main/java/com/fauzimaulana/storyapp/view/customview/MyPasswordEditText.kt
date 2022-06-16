@@ -1,12 +1,10 @@
 package com.fauzimaulana.storyapp.view.customview
 
 import android.content.Context
-import android.graphics.Canvas
 import android.text.Editable
 import android.text.TextWatcher
 import android.util.AttributeSet
 import androidx.appcompat.widget.AppCompatEditText
-import com.fauzimaulana.storyapp.R
 
 class MyPasswordEditText: AppCompatEditText {
     constructor(context: Context): super(context) {

@@ -10,19 +10,18 @@ import android.view.View
 import android.view.WindowInsets
 import android.view.WindowManager
 import androidx.appcompat.app.AlertDialog
-import androidx.lifecycle.ViewModelProvider
 import com.fauzimaulana.storyapp.R
 import com.fauzimaulana.storyapp.databinding.ActivityLoginBinding
 import com.fauzimaulana.storyapp.domain.model.UserModel
-import com.fauzimaulana.storyapp.view.ViewModelFactory
 import com.fauzimaulana.storyapp.view.main.MainActivity
+import org.koin.android.viewmodel.ext.android.viewModel
 
 class LoginActivity : AppCompatActivity() {
 
     private var _binding: ActivityLoginBinding? = null
     private val binding get() = _binding!!
 
-    private lateinit var loginViewModel: LoginViewModel
+    private val loginViewModel: LoginViewModel by viewModel()
     private lateinit var user: UserModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -49,12 +48,6 @@ class LoginActivity : AppCompatActivity() {
     }
 
     private fun setupViewModel() {
-        val factory = ViewModelFactory.getInstance(this)
-        loginViewModel = ViewModelProvider(
-            this,
-            factory
-        )[LoginViewModel::class.java]
-
         loginViewModel.getUser().observe(this) { user ->
             this.user = user
         }
