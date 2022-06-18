@@ -15,7 +15,7 @@ class SplashScreenActivity : AppCompatActivity() {
 
         val screenTime = 3000L
         Handler(mainLooper).postDelayed({
-            val intent = Intent(this, SignUpActivity::class.java)
+            val intent = Intent(this, MainActivity::class.java)
             startActivity(intent)
             finish()
         }, screenTime)

@@ -2,10 +2,7 @@ package com.fauzimaulana.storyapp.core.data.source.remote
 
 import android.util.Log
 import com.fauzimaulana.storyapp.core.data.source.remote.network.ApiService
-import com.fauzimaulana.storyapp.core.data.source.remote.response.AddNewStoryResponse
-import com.fauzimaulana.storyapp.core.data.source.remote.response.LoginResult
-import com.fauzimaulana.storyapp.core.data.source.remote.response.SignUpResponse
-import com.fauzimaulana.storyapp.core.data.source.remote.response.StoryResponse
+import com.fauzimaulana.storyapp.core.data.source.remote.response.*
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
@@ -33,7 +30,7 @@ class RemoteDataSource(private val apiService: ApiService) {
         }.flowOn(Dispatchers.IO)
     }
 
-    fun userLogin(email: String, password: String): Flow<ApiResponse<LoginResult>> {
+    fun userLogin(email: String, password: String): Flow<ApiResponse<LoginResponse>> {
         return flow {
             try {
                 val response = apiService.userLogin(email, password)
@@ -41,7 +38,7 @@ class RemoteDataSource(private val apiService: ApiService) {
                     emit(ApiResponse.Error(response.message))
                     Log.e("RemoteDataSource: ", response.message)
                 } else {
-                    emit(ApiResponse.Success(response.loginResult))
+                    emit(ApiResponse.Success(response))
                 }
             } catch (e: Exception) {
                 emit(ApiResponse.Error(e.toString()))

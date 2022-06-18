@@ -1,13 +1,7 @@
 package com.fauzimaulana.storyapp.core.utils
 
-import com.fauzimaulana.storyapp.core.data.source.remote.response.AddNewStoryResponse
-import com.fauzimaulana.storyapp.core.data.source.remote.response.LoginResult
-import com.fauzimaulana.storyapp.core.data.source.remote.response.SignUpResponse
-import com.fauzimaulana.storyapp.core.data.source.remote.response.StoryResponse
-import com.fauzimaulana.storyapp.core.domain.model.AddNewStoryModel
-import com.fauzimaulana.storyapp.core.domain.model.LoginModel
-import com.fauzimaulana.storyapp.core.domain.model.SignUpModel
-import com.fauzimaulana.storyapp.core.domain.model.StoryModel
+import com.fauzimaulana.storyapp.core.data.source.remote.response.*
+import com.fauzimaulana.storyapp.core.domain.model.*
 
 object DataMapper {
     fun mapSIgnUpResponseToDomain(input: SignUpResponse) = SignUpModel(
@@ -15,10 +9,14 @@ object DataMapper {
         message = input.message
     )
 
-    fun mapLoginResponseToDomain(input: LoginResult) = LoginModel(
-        name = input.name,
-        userId = input.userId,
-        token = input.token
+    fun mapLoginResponseToDomain(input: LoginResponse) = LoginModel(
+        error = input.error,
+        message = input.message,
+        loginResult = LoginResultModel(
+            input.loginResult.name,
+            input.loginResult.userId,
+            input.loginResult.token
+        )
     )
 
     fun mapAddNewStoryResponseToDomain(input: AddNewStoryResponse) = AddNewStoryModel(

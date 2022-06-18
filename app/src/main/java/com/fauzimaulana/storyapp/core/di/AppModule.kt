@@ -7,9 +7,8 @@ import androidx.datastore.preferences.preferencesDataStore
 import com.fauzimaulana.storyapp.core.data.StoryRepository
 import com.fauzimaulana.storyapp.core.data.source.remote.RemoteDataSource
 import com.fauzimaulana.storyapp.core.data.source.remote.network.ApiService
-import com.fauzimaulana.storyapp.core.domain.model.UserPreference
+import com.fauzimaulana.storyapp.core.data.UserPreference
 import com.fauzimaulana.storyapp.core.domain.repository.IStoryRepository
-import com.fauzimaulana.storyapp.core.domain.repository.IUserPreference
 import com.fauzimaulana.storyapp.core.domain.usecase.StoryInteractor
 import com.fauzimaulana.storyapp.core.domain.usecase.StoryUseCase
 import com.fauzimaulana.storyapp.view.login.LoginViewModel
@@ -23,7 +22,6 @@ import org.koin.android.viewmodel.dsl.viewModel
 import org.koin.dsl.module
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
-import retrofit2.create
 import java.util.concurrent.TimeUnit
 
 private val Context.datastore: DataStore<Preferences> by preferencesDataStore(name = "settings")

@@ -2,10 +2,7 @@ package com.fauzimaulana.storyapp.core.data
 
 import com.fauzimaulana.storyapp.core.data.source.remote.ApiResponse
 import com.fauzimaulana.storyapp.core.data.source.remote.RemoteDataSource
-import com.fauzimaulana.storyapp.core.data.source.remote.response.AddNewStoryResponse
-import com.fauzimaulana.storyapp.core.data.source.remote.response.LoginResult
-import com.fauzimaulana.storyapp.core.data.source.remote.response.SignUpResponse
-import com.fauzimaulana.storyapp.core.data.source.remote.response.StoryResponse
+import com.fauzimaulana.storyapp.core.data.source.remote.response.*
 import com.fauzimaulana.storyapp.core.domain.model.*
 import com.fauzimaulana.storyapp.core.domain.repository.IStoryRepository
 import com.fauzimaulana.storyapp.core.utils.DataMapper
@@ -32,11 +29,11 @@ class StoryRepository(
     }
 
     override fun userLogin(email: String, password: String): Flow<Resource<LoginModel>> {
-        return object : NetworkBoundResource<LoginModel, LoginResult>() {
-            override fun createCall(): Flow<ApiResponse<LoginResult>> =
+        return object : NetworkBoundResource<LoginModel, LoginResponse>() {
+            override fun createCall(): Flow<ApiResponse<LoginResponse>> =
                 remoteDataSource.userLogin(email, password)
 
-            override fun loadData(data: LoginResult): LoginModel =
+            override fun loadData(data: LoginResponse): LoginModel =
                 DataMapper.mapLoginResponseToDomain(data)
         }.asFlow()
     }
