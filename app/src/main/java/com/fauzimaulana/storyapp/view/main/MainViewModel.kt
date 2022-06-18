@@ -8,6 +8,6 @@ import com.fauzimaulana.storyapp.core.domain.usecase.StoryUseCase
 
 class MainViewModel(private val storyUseCase: StoryUseCase): ViewModel() {
     fun getUser(): LiveData<UserModel> {
-        return storyUseCase.getUser().asLiveData()
+        return storyUseCase.getUserPref().asLiveData()
     }
 }

@@ -4,8 +4,11 @@ import android.content.Context
 import androidx.datastore.core.DataStore
 import androidx.datastore.preferences.core.Preferences
 import androidx.datastore.preferences.preferencesDataStore
+import com.fauzimaulana.storyapp.core.data.StoryRepository
+import com.fauzimaulana.storyapp.core.data.source.remote.RemoteDataSource
 import com.fauzimaulana.storyapp.core.data.source.remote.network.ApiService
 import com.fauzimaulana.storyapp.core.domain.model.UserPreference
+import com.fauzimaulana.storyapp.core.domain.repository.IStoryRepository
 import com.fauzimaulana.storyapp.core.domain.repository.IUserPreference
 import com.fauzimaulana.storyapp.core.domain.usecase.StoryInteractor
 import com.fauzimaulana.storyapp.core.domain.usecase.StoryUseCase
@@ -26,7 +29,9 @@ import java.util.concurrent.TimeUnit
 private val Context.datastore: DataStore<Preferences> by preferencesDataStore(name = "settings")
 
 val repositoryModule = module {
-    single<IUserPreference> { UserPreference(androidContext().datastore) }
+    single { UserPreference(androidContext().datastore) }
+    single { RemoteDataSource(get()) }
+    single<IStoryRepository> { StoryRepository(get(), get()) }
 }
 
 val networkModule = module {
@@ -39,7 +44,7 @@ val networkModule = module {
     }
     single {
         val retrofit = Retrofit.Builder()
-            .baseUrl("https://story-api.dicoding.dev/v1")
+            .baseUrl("https://story-api.dicoding.dev/v1/")
             .addConverterFactory(GsonConverterFactory.create())
             .client(get())
             .build()

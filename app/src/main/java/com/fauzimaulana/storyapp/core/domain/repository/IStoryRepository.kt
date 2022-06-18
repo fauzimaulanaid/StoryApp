@@ -1,4 +1,4 @@
-package com.fauzimaulana.storyapp.core.domain.usecase
+package com.fauzimaulana.storyapp.core.domain.repository
 
 import com.fauzimaulana.storyapp.core.domain.model.*
 import com.fauzimaulana.storyapp.core.vo.Resource
@@ -6,7 +6,8 @@ import kotlinx.coroutines.flow.Flow
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
 
-interface StoryUseCase {
+
+interface IStoryRepository {
     fun registerUser(name: String, email: String, password: String): Flow<Resource<SignUpModel>>
 
     fun userLogin(email: String, password: String): Flow<Resource<LoginModel>>

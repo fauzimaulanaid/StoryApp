@@ -1,0 +1,15 @@
+package com.fauzimaulana.storyapp.core.domain.model
+
+import android.os.Parcelable
+import kotlinx.parcelize.Parcelize
+
+@Parcelize
+data class StoryModel(
+    val id: String,
+    val name: String,
+    val description: String,
+    val photoUrl: String,
+    val createAt: String,
+    val lat: Double,
+    val lon: Double
+): Parcelable

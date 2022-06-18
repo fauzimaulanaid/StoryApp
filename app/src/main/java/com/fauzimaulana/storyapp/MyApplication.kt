@@ -1,6 +1,7 @@
 package com.fauzimaulana.storyapp
 
 import android.app.Application
+import com.fauzimaulana.storyapp.core.di.networkModule
 import com.fauzimaulana.storyapp.core.di.repositoryModule
 import com.fauzimaulana.storyapp.core.di.useCaseModule
 import com.fauzimaulana.storyapp.core.di.viewModelModule
@@ -17,6 +18,7 @@ class MyApplication : Application() {
             androidContext(this@MyApplication)
             modules(
                 listOf(
+                    networkModule,
                     repositoryModule,
                     useCaseModule,
                     viewModelModule

@@ -7,7 +7,7 @@ import kotlinx.coroutines.launch
 
 class AccountViewModel(private val storyUseCase: StoryUseCase) : ViewModel() {
     fun getUser(): LiveData<UserModel> {
-        return storyUseCase.getUser().asLiveData()
+        return storyUseCase.getUserPref().asLiveData()
     }
 
     fun logout() {

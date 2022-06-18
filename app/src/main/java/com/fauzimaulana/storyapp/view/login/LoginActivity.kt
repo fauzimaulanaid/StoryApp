@@ -71,6 +71,7 @@ class LoginActivity : AppCompatActivity() {
                     binding.passwordEditTextLayout.error = resources.getString(R.string.wrong_password)
                 }
                 else -> {
+                    loginViewModel.userLogin(email, password)
                     loginViewModel.login()
                     AlertDialog.Builder(this).apply {
                         setTitle(resources.getString(R.string.congratulations))
