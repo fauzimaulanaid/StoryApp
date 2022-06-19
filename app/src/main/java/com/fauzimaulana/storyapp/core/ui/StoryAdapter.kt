@@ -1,6 +1,5 @@
 package com.fauzimaulana.storyapp.core.ui
 
-import android.os.Build
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
@@ -10,14 +9,13 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.fauzimaulana.storyapp.R
 import com.fauzimaulana.storyapp.core.domain.model.StoryModel
-import com.fauzimaulana.storyapp.databinding.ItemListStoryBinding
 import com.fauzimaulana.storyapp.databinding.ItemListStoryNewBinding
 import java.text.SimpleDateFormat
-import java.time.LocalDateTime
-import java.time.format.DateTimeFormatter
 import java.util.*
 
 class StoryAdapter: ListAdapter<StoryModel, StoryAdapter.StoryViewHolder>(DIFF_CALLBACK) {
+
+    @Suppress("SimpleDateFormat")
     class StoryViewHolder(private val binding: ItemListStoryNewBinding): RecyclerView.ViewHolder(binding.root) {
         fun bind(story: StoryModel) {
             with(binding) {
@@ -28,21 +26,16 @@ class StoryAdapter: ListAdapter<StoryModel, StoryAdapter.StoryViewHolder>(DIFF_C
                     .into(storyImageView)
                 tvName.text = story.name
 
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-                    val current = LocalDateTime.now()
-                    val dateTimeFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss'Z'")
-//                    val formatter = LocalDate.parse(story.createAt, dateTimeFormatter)
-                    tvCreatedAt.text = current.format(dateTimeFormatter)
-//                    val day = formatter.dayOfWeek.toString()
-//                    val date = formatter.dayOfMonth.toString()
-//                    val month = formatter.month.toString()
-//                    val year = formatter.year.toString()
-                } else {
-                    val date = Date()
-                    val dateTimeFormatter = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'")
-                    tvCreatedAt.text = dateTimeFormatter.format(date)
-                }
+                val formatter = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'")
+                val oldTime = formatter.parse(story.createAt)
+                val currentDate = Date()
 
+                val diff = currentDate.time - oldTime!!.time
+                val seconds = diff / 1000
+                val minutes = seconds / 60
+                val hours = minutes / 60
+                val modMinutes = minutes % 60
+                tvCreatedAt.text = itemView.context.getString(R.string.story_created_at, hours, modMinutes)
             }
         }
     }

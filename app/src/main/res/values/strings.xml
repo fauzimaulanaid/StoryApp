@@ -44,4 +44,5 @@
     <string name="fauzi">Muhammad Fauzi Maulana</string>
 
     <string name="fetch_failed">Something went wrong, \nPlease check your internet connection.</string>
+    <string name="story_created_at">%d hours %d minutes ago</string>
 </resources>
