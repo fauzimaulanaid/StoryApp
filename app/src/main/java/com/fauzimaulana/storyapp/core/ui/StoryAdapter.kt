@@ -1,5 +1,6 @@
 package com.fauzimaulana.storyapp.core.ui
 
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
@@ -10,6 +11,7 @@ import com.bumptech.glide.request.RequestOptions
 import com.fauzimaulana.storyapp.R
 import com.fauzimaulana.storyapp.core.domain.model.StoryModel
 import com.fauzimaulana.storyapp.databinding.ItemListStoryNewBinding
+import com.fauzimaulana.storyapp.view.detail.DetailActivity
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -35,7 +37,15 @@ class StoryAdapter: ListAdapter<StoryModel, StoryAdapter.StoryViewHolder>(DIFF_C
                 val minutes = seconds / 60
                 val hours = minutes / 60
                 val modMinutes = minutes % 60
-                tvCreatedAt.text = itemView.context.getString(R.string.story_created_at, hours, modMinutes)
+                val createdAt = itemView.context.getString(R.string.story_created_at, hours, modMinutes)
+                tvCreatedAt.text = createdAt
+
+                itemView.setOnClickListener {
+                    val intent = Intent(itemView.context, DetailActivity::class.java)
+                    intent.putExtra(DetailActivity.EXTRA_DATA, story)
+                    intent.putExtra(DetailActivity.EXTRA_INFO, createdAt)
+                    itemView.context.startActivity(intent)
+                }
             }
         }
     }
