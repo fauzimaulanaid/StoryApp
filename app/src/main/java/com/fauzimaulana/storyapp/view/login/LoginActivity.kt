@@ -24,7 +24,6 @@ class LoginActivity : AppCompatActivity() {
     private val binding get() = _binding!!
 
     private val loginViewModel: LoginViewModel by viewModel()
-    private lateinit var user: UserModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -32,7 +31,6 @@ class LoginActivity : AppCompatActivity() {
         setContentView(binding.root)
         setupView()
         playAnimation()
-//        setupViewModel()
         setupAction()
     }
 
@@ -49,12 +47,6 @@ class LoginActivity : AppCompatActivity() {
         supportActionBar?.hide()
     }
 
-//    private fun setupViewModel() {
-//        loginViewModel.getUser().observe(this) { user ->
-//            this.user = user
-//        }
-//    }
-
     private fun setupAction() {
         binding.loginButton.setOnClickListener {
             val email = binding.emailEditText.text.toString()
@@ -66,12 +58,6 @@ class LoginActivity : AppCompatActivity() {
                 password.isEmpty() -> {
                     binding.passwordEditTextLayout.error = resources.getString(R.string.password_error_message)
                 }
-//                email != user.email -> {
-//                    binding.emailEditTextLayout.error= resources.getString(R.string.email_not_found)
-//                }
-//                password != user.password -> {
-//                    binding.passwordEditTextLayout.error = resources.getString(R.string.wrong_password)
-//                }
                 else -> {
                     loginViewModel.userLogin(email, password).observe(this) { loginResult ->
                         when (loginResult) {
@@ -81,7 +67,7 @@ class LoginActivity : AppCompatActivity() {
                             is Resource.Success -> {
                                 binding.progressBar.visibility = View.GONE
                                 if (loginResult.data?.error == false) {
-                                    loginViewModel.saveUser(UserModel(loginResult.data.loginResult!!.name, email, password, loginResult.data.loginResult.token, true))
+                                    loginViewModel.saveUser(UserModel(loginResult.data.loginResult.name, email, password, loginResult.data.loginResult.token, true))
                                     AlertDialog.Builder(this).apply {
                                         setTitle(loginResult.data.message)
                                         setMessage(resources.getString(R.string.login_success))

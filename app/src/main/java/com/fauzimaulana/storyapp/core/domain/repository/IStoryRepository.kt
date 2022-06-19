@@ -20,7 +20,5 @@ interface IStoryRepository {
 
     suspend fun saveUser(user: UserModel)
 
-    suspend fun loginUser()
-
     suspend fun logout()
 }

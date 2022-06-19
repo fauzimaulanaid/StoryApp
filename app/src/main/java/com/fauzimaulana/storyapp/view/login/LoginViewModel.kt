@@ -20,14 +20,4 @@ class LoginViewModel(private val storyUseCase: StoryUseCase): ViewModel() {
             storyUseCase.saveUser(user)
         }
     }
-
-    fun getUser(): LiveData<UserModel> {
-        return storyUseCase.getUserPref().asLiveData()
-    }
-
-    fun login() {
-        viewModelScope.launch {
-            storyUseCase.loginUser()
-        }
-    }
 }

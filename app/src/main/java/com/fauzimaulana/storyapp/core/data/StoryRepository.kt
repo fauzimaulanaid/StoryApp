@@ -66,7 +66,5 @@ class StoryRepository(
 
     override suspend fun saveUser(user: UserModel) = userPreference.saveUser(user)
 
-    override suspend fun loginUser() = userPreference.login()
-
     override suspend fun logout() = userPreference.logout()
 }

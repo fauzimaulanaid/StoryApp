@@ -9,4 +9,9 @@
     <color name="white">#FFFFFFFF</color>
     <color name="navi">#2D3D4F</color>
     <color name="red">#EA2027</color>
+
+    <color name="soft_black">#7F000000</color>
+    <color name="white_dark">#B3FFFFFF</color>
+    <color name="grey">#6FB6B6B6</color>
+    <color name="soft_white">#DDDDDD</color>
 </resources>

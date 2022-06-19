@@ -34,9 +34,6 @@ class StoryInteractor(private val storyRepository: IStoryRepository): StoryUseCa
     override suspend fun saveUser(user: UserModel) =
         storyRepository.saveUser(user)
 
-    override suspend fun loginUser() =
-        storyRepository.loginUser()
-
     override suspend fun logout() =
         storyRepository.logout()
 }

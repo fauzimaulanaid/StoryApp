@@ -14,6 +14,7 @@ import com.fauzimaulana.storyapp.core.domain.usecase.StoryUseCase
 import com.fauzimaulana.storyapp.view.login.LoginViewModel
 import com.fauzimaulana.storyapp.view.main.MainViewModel
 import com.fauzimaulana.storyapp.view.main.ui.account.AccountViewModel
+import com.fauzimaulana.storyapp.view.main.ui.home.HomeViewModel
 import com.fauzimaulana.storyapp.view.signup.SignUpViewModel
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
@@ -57,6 +58,7 @@ val useCaseModule = module {
 val viewModelModule = module {
     viewModel { LoginViewModel(get()) }
     viewModel { SignUpViewModel(get()) }
+    viewModel { HomeViewModel(get()) }
     viewModel { AccountViewModel(get()) }
     viewModel { MainViewModel(get()) }
 }
