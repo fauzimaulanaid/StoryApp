@@ -11,13 +11,14 @@ import com.bumptech.glide.request.RequestOptions
 import com.fauzimaulana.storyapp.R
 import com.fauzimaulana.storyapp.core.domain.model.StoryModel
 import com.fauzimaulana.storyapp.databinding.ItemListStoryBinding
+import com.fauzimaulana.storyapp.databinding.ItemListStoryNewBinding
 import java.text.SimpleDateFormat
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
 import java.util.*
 
 class StoryAdapter: ListAdapter<StoryModel, StoryAdapter.StoryViewHolder>(DIFF_CALLBACK) {
-    class StoryViewHolder(private val binding: ItemListStoryBinding): RecyclerView.ViewHolder(binding.root) {
+    class StoryViewHolder(private val binding: ItemListStoryNewBinding): RecyclerView.ViewHolder(binding.root) {
         fun bind(story: StoryModel) {
             with(binding) {
                 Glide.with(itemView.context)
@@ -47,7 +48,7 @@ class StoryAdapter: ListAdapter<StoryModel, StoryAdapter.StoryViewHolder>(DIFF_C
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): StoryViewHolder {
-        val itemListStoryBinding = ItemListStoryBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        val itemListStoryBinding = ItemListStoryNewBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return StoryViewHolder(itemListStoryBinding)
     }
 

@@ -37,16 +37,16 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
-                <include layout="@layout/item_list_story_placeholder"/>
-                <include layout="@layout/item_list_story_placeholder"/>
-                <include layout="@layout/item_list_story_placeholder"/>
-                <include layout="@layout/item_list_story_placeholder"/>
-                <include layout="@layout/item_list_story_placeholder"/>
-                <include layout="@layout/item_list_story_placeholder"/>
-                <include layout="@layout/item_list_story_placeholder"/>
-                <include layout="@layout/item_list_story_placeholder"/>
-                <include layout="@layout/item_list_story_placeholder"/>
-                <include layout="@layout/item_list_story_placeholder"/>
+                <include layout="@layout/item_list_story_new_placeholder"/>
+                <include layout="@layout/item_list_story_new_placeholder"/>
+                <include layout="@layout/item_list_story_new_placeholder"/>
+                <include layout="@layout/item_list_story_new_placeholder"/>
+                <include layout="@layout/item_list_story_new_placeholder"/>
+                <include layout="@layout/item_list_story_new_placeholder"/>
+                <include layout="@layout/item_list_story_new_placeholder"/>
+                <include layout="@layout/item_list_story_new_placeholder"/>
+                <include layout="@layout/item_list_story_new_placeholder"/>
+                <include layout="@layout/item_list_story_new_placeholder"/>
             </LinearLayout>
 
         </ScrollView>
