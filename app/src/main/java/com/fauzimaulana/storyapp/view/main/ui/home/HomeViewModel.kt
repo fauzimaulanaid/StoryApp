@@ -9,9 +9,8 @@ import com.fauzimaulana.storyapp.core.domain.usecase.StoryUseCase
 import com.fauzimaulana.storyapp.core.vo.Resource
 
 class HomeViewModel(private val storyUseCase: StoryUseCase) : ViewModel() {
-    fun getUser(): LiveData<UserModel> {
-        return storyUseCase.getUserPref().asLiveData()
-    }
+    fun getUser(): LiveData<UserModel> =
+        storyUseCase.getUserPref().asLiveData()
 
     fun getAllStories(token: String): LiveData<Resource<List<StoryModel>>> =
         storyUseCase.getAllStories(token).asLiveData()

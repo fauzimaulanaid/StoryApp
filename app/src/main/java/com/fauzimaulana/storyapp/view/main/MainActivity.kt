@@ -43,7 +43,7 @@ class MainActivity : AppCompatActivity() {
     private fun setupViewModel() {
         mainViewModel.getUser().observe(this) { user ->
             if (user.isLogin) {
-                Toast.makeText(this, "Welcome", Toast.LENGTH_SHORT).show()
+                //Do nothing
             } else {
                 val intent = Intent(this, WelcomeActivity::class.java)
                 intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK

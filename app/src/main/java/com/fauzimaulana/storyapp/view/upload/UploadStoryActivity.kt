@@ -9,19 +9,30 @@ import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.provider.MediaStore
+import android.view.View
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.core.content.FileProvider
 import com.fauzimaulana.storyapp.core.utils.Utils
+import com.fauzimaulana.storyapp.core.vo.Resource
 import com.fauzimaulana.storyapp.databinding.ActivityUploadStoryBinding
+import com.fauzimaulana.storyapp.view.main.MainActivity
+import okhttp3.MediaType.Companion.toMediaType
+import okhttp3.MediaType.Companion.toMediaTypeOrNull
+import okhttp3.MultipartBody
+import okhttp3.RequestBody.Companion.asRequestBody
+import okhttp3.RequestBody.Companion.toRequestBody
+import org.koin.android.viewmodel.ext.android.viewModel
 import java.io.File
 
 class UploadStoryActivity : AppCompatActivity() {
 
     private var _binding: ActivityUploadStoryBinding? = null
     private val binding get() = _binding!!
+
+    private val uploadStoryViewModel: UploadStoryViewModel by viewModel()
 
     private lateinit var currentPhotoPath: String
 
@@ -43,6 +54,16 @@ class UploadStoryActivity : AppCompatActivity() {
         }
         binding.buttonGallery.setOnClickListener {
             startGallery()
+        }
+        binding.buttonUpload.setOnClickListener {
+            val storyDescription = binding.descriptionEditText.text
+            if (storyDescription.toString().isEmpty()) {
+                binding.descriptionEditTextLayout.error = "Please input your story description"
+            } else {
+                uploadStoryViewModel.getUser().observe(this) { user ->
+                    uploadStory(storyDescription.toString(), user.token)
+                }
+            }
         }
     }
 
@@ -107,6 +128,39 @@ class UploadStoryActivity : AppCompatActivity() {
             val myFile = Utils.uriToFile(selectedImg, this@UploadStoryActivity)
             getFile = myFile
             binding.previewImageView.setImageURI(selectedImg)
+        }
+    }
+
+    private fun uploadStory(description: String, token: String) {
+        if (getFile != null) {
+            val file = Utils.reduceFileImage(getFile as File)
+
+            val storyDescription = description.toRequestBody("text/plain".toMediaType())
+            val requestImageFile = file.asRequestBody("image/jpeg".toMediaTypeOrNull())
+            val imageMultiPart: MultipartBody.Part = MultipartBody.Part.createFormData(
+                "photo",
+                file.name,
+                requestImageFile
+            )
+
+            uploadStoryViewModel.uploadStory(imageMultiPart, storyDescription, token).observe(this) { upload ->
+                when (upload) {
+                    is Resource.Loading -> binding.progressBar.visibility = View.VISIBLE
+                    is Resource.Success -> {
+                        binding.progressBar.visibility = View.GONE
+                        Toast.makeText(this@UploadStoryActivity, "Your story uploaded", Toast.LENGTH_SHORT).show()
+                        val intent = Intent(this@UploadStoryActivity, MainActivity::class.java)
+                        intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
+                        startActivity(intent)
+                    }
+                    is Resource.Error -> {
+                        binding.progressBar.visibility = View.GONE
+                        Toast.makeText(this@UploadStoryActivity, "Failed to upload your story", Toast.LENGTH_SHORT).show()
+                    }
+                }
+            }
+        } else {
+            Toast.makeText(this@UploadStoryActivity, "Please choose a picture first.", Toast.LENGTH_LONG).show()
         }
     }
 

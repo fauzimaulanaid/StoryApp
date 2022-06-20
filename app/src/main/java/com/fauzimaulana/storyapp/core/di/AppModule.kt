@@ -16,6 +16,7 @@ import com.fauzimaulana.storyapp.view.main.MainViewModel
 import com.fauzimaulana.storyapp.view.main.ui.account.AccountViewModel
 import com.fauzimaulana.storyapp.view.main.ui.home.HomeViewModel
 import com.fauzimaulana.storyapp.view.signup.SignUpViewModel
+import com.fauzimaulana.storyapp.view.upload.UploadStoryViewModel
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import org.koin.android.ext.koin.androidContext
@@ -61,4 +62,5 @@ val viewModelModule = module {
     viewModel { HomeViewModel(get()) }
     viewModel { AccountViewModel(get()) }
     viewModel { MainViewModel(get()) }
+    viewModel { UploadStoryViewModel(get()) }
 }

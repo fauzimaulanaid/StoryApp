@@ -36,14 +36,23 @@ class StoryAdapter: ListAdapter<StoryModel, StoryAdapter.StoryViewHolder>(DIFF_C
                 val seconds = diff / 1000
                 val minutes = seconds / 60
                 val hours = minutes / 60
+
+                //Karena jam di server lebih lambat 7 jam, jadi saya mencari real hours
+                val realHours = if (hours.toString() == "0") hours else hours - 7
+
                 val modMinutes = minutes % 60
-                val createdAt = itemView.context.getString(R.string.story_created_at, hours, modMinutes)
-                tvCreatedAt.text = createdAt
+
+                val resultCreatedAt: String = if (realHours.toString() == "0") {
+                    itemView.context.getString(R.string.story_created_at_only_minutes, modMinutes)
+                } else {
+                    itemView.context.getString(R.string.story_created_at, realHours, modMinutes)
+                }
+                tvCreatedAt.text = resultCreatedAt
 
                 itemView.setOnClickListener {
                     val intent = Intent(itemView.context, DetailActivity::class.java)
                     intent.putExtra(DetailActivity.EXTRA_DATA, story)
-                    intent.putExtra(DetailActivity.EXTRA_INFO, createdAt)
+                    intent.putExtra(DetailActivity.EXTRA_INFO, resultCreatedAt)
                     itemView.context.startActivity(intent)
                 }
             }
