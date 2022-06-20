@@ -47,7 +47,7 @@
     <string name="story_created_at">%d hours %d minutes ago</string>
     <string name="description">Description</string>
     <string name="date_created">Date Created</string>
-    <string name="created_from">Created from: %d, %d</string>
+    <string name="created_from">Created from: %f, %f</string>
 
     <string name="title_activity_detail">Story Detail</string>
 </resources>
