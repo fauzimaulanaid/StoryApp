@@ -1,15 +1,16 @@
 package com.fauzimaulana.storyapp.view.main.ui.home
 
+import android.content.Intent
 import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.fauzimaulana.storyapp.R
 import com.fauzimaulana.storyapp.core.ui.StoryAdapter
 import com.fauzimaulana.storyapp.core.vo.Resource
 import com.fauzimaulana.storyapp.databinding.FragmentHomeBinding
+import com.fauzimaulana.storyapp.view.upload.UploadStoryActivity
 import org.koin.android.viewmodel.ext.android.viewModel
 
 class HomeFragment : Fragment() {
@@ -32,6 +33,7 @@ class HomeFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        setHasOptionsMenu(true)
         storyAdapter = StoryAdapter()
         homeViewModel.getUser().observe(viewLifecycleOwner) { user ->
             homeViewModel.getAllStories(user.token).observe(viewLifecycleOwner) { stories ->
@@ -53,6 +55,21 @@ class HomeFragment : Fragment() {
             setHasFixedSize(true)
             adapter = storyAdapter
         }
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        inflater.inflate(R.menu.menu_main, menu)
+        super.onCreateOptionsMenu(menu, inflater)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when (item.itemId) {
+            R.id.addStory -> {
+                val intent = Intent(requireContext(), UploadStoryActivity::class.java)
+                startActivity(intent)
+            }
+        }
+        return super.onOptionsItemSelected(item)
     }
 
     override fun onDestroyView() {

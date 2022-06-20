@@ -50,4 +50,10 @@
     <string name="created_from">Created from: %f, %f</string>
 
     <string name="title_activity_detail">Story Detail</string>
+    <string name="preview_image">Preview Image</string>
+    <string name="camera">Camera</string>
+    <string name="gallery">Gallery</string>
+    <string name="story_description">Description of your story</string>
+    <string name="upload">Upload</string>
+    <string name="add_story">Add Story</string>
 </resources>
