@@ -77,4 +77,9 @@ class WelcomeActivity : AppCompatActivity() {
             start()
         }
     }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        _binding = null
+    }
 }

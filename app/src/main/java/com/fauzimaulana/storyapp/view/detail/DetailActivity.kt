@@ -39,7 +39,7 @@ class DetailActivity : AppCompatActivity() {
                 .into(binding.storyImageView)
             binding.tvDescription.text = story.description
             binding.tvDateCreated.text = story.createAt
-            binding.tvCreatedFrom.text = "Created from: ${story.lat}, ${story.lon}"
+            binding.tvCreatedFrom.text = resources.getString(R.string.created_from, story.lat, story.lon)
         }
     }
 

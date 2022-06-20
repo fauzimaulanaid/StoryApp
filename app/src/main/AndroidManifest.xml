@@ -20,12 +20,7 @@
             android:name=".view.detail.DetailActivity"
             android:exported="false"
             android:label="@string/title_activity_detail"
-            android:parentActivityName=".view.main.MainActivity"
-            android:theme="@style/Theme.StoryApp.NoActionBar">
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value=".view.main.MainActivity"/>
-        </activity>
+            android:theme="@style/Theme.StoryApp.NoActionBar"/>
         <activity
             android:name=".view.main.MainActivity"
             android:exported="true" />

@@ -111,4 +111,9 @@ class LoginActivity : AppCompatActivity() {
             start()
         }
     }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        _binding = null
+    }
 }
