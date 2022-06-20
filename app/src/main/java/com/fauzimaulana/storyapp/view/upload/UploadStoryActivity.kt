@@ -2,8 +2,8 @@ package com.fauzimaulana.storyapp.view.upload
 
 import android.Manifest
 import android.content.Intent
+import android.content.Intent.ACTION_GET_CONTENT
 import android.content.pm.PackageManager
-import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
@@ -25,6 +25,8 @@ class UploadStoryActivity : AppCompatActivity() {
 
     private lateinit var currentPhotoPath: String
 
+    private var getFile: File? = null
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         _binding = ActivityUploadStoryBinding.inflate(layoutInflater)
@@ -38,6 +40,9 @@ class UploadStoryActivity : AppCompatActivity() {
 
         binding.buttonCamera.setOnClickListener {
             startTakePhoto()
+        }
+        binding.buttonGallery.setOnClickListener {
+            startGallery()
         }
     }
 
@@ -65,7 +70,7 @@ class UploadStoryActivity : AppCompatActivity() {
         if (it.resultCode == RESULT_OK) {
             val myFile = File(currentPhotoPath)
             val result = BitmapFactory.decodeFile(myFile.path)
-
+            getFile = myFile
             binding.previewImageView.setImageBitmap(result)
         }
     }
@@ -83,6 +88,25 @@ class UploadStoryActivity : AppCompatActivity() {
             currentPhotoPath = it.absolutePath
             intent.putExtra(MediaStore.EXTRA_OUTPUT, photoURI)
             launcherIntentCamera.launch(intent)
+        }
+    }
+
+    private fun startGallery() {
+        val intent = Intent()
+        intent.action = ACTION_GET_CONTENT
+        intent.type = "image/*"
+        val chooser = Intent.createChooser(intent, "Choose a Picture")
+        launcherIntentGallery.launch(chooser)
+    }
+
+    private val launcherIntentGallery = registerForActivityResult(
+        ActivityResultContracts.StartActivityForResult()
+    ) {
+        if (it.resultCode == RESULT_OK) {
+            val selectedImg: Uri = it.data?.data as Uri
+            val myFile = Utils.uriToFile(selectedImg, this@UploadStoryActivity)
+            getFile = myFile
+            binding.previewImageView.setImageURI(selectedImg)
         }
     }
 
