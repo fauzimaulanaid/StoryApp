@@ -4,7 +4,9 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
+import com.fauzimaulana.storyapp.R
 import com.fauzimaulana.storyapp.databinding.FragmentAccountBinding
 import org.koin.android.viewmodel.ext.android.viewModel
 
@@ -39,8 +41,23 @@ class AccountFragment() : Fragment() {
 
     private fun setupAction() {
         binding.logoutButton.setOnClickListener {
-            accountViewModel.logout()
+            showAlertLogout()
         }
+    }
+
+    private fun showAlertLogout() {
+        val alertDialogBuilder = AlertDialog.Builder(requireContext())
+        with(alertDialogBuilder) {
+            setTitle(resources.getString(R.string.alert))
+            setMessage(resources.getString(R.string.logout_confirmation))
+            setCancelable(false)
+            setPositiveButton(resources.getString(R.string.yes)) { _, _ ->
+                accountViewModel.logout()
+            }
+            setNegativeButton(resources.getString(R.string.no)) { dialog, _ -> dialog.cancel() }
+        }
+        val alertDialog = alertDialogBuilder.create()
+        alertDialog.show()
     }
 
     override fun onDestroyView() {

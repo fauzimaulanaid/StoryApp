@@ -12,6 +12,8 @@ import android.view.WindowManager
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import com.fauzimaulana.storyapp.R
+import com.fauzimaulana.storyapp.core.utils.CheckNetworkConnection
+import com.fauzimaulana.storyapp.core.utils.Utils
 import com.fauzimaulana.storyapp.core.vo.Resource
 import com.fauzimaulana.storyapp.databinding.ActivitySignUpBinding
 import org.koin.android.viewmodel.ext.android.viewModel
@@ -66,51 +68,56 @@ class SignUpActivity : AppCompatActivity() {
 
     private fun setupAction() {
         binding.signupButton.setOnClickListener {
-            val name = binding.nameEditText.text.toString()
-            val email = binding.emailEditText.text.toString()
-            val password = binding.passwordEditText.text.toString()
-            when {
-                name.isEmpty() -> {
-                    binding.nameEditTextLayout.error = resources.getString(R.string.name_error_message)
-                }
-                email.isEmpty() -> {
-                    binding.emailEditTextLayout.error = resources.getString(R.string.email_error_message)
-                }
-                password.isEmpty() -> {
-                    binding.passwordEditTextLayout.error = resources.getString(R.string.password_error_message)
-                }
-                password.length < 6 || !Patterns.EMAIL_ADDRESS.matcher(email).matches() -> {
-                    Toast.makeText(this, resources.getString(R.string.registration_failed), Toast.LENGTH_SHORT).show()
-                }
-                else -> {
-                    signUpViewModel.registerUser(name, email, password).observe(this) { signUpResult ->
-                        when (signUpResult) {
-                            is Resource.Loading -> {
-                                binding.progressBar.visibility = View.VISIBLE
-                            }
-                            is Resource.Success -> {
-                                if (signUpResult.data?.error == false) {
-                                    binding.progressBar.visibility = View.GONE
-                                    AlertDialog.Builder(this).apply {
-                                        setTitle(signUpResult.data.message)
-                                        setMessage(resources.getString(R.string.account_created))
-                                        setPositiveButton(resources.getString(R.string.next)) {_, _ ->
-                                            finish()
-                                        }
-                                        create()
-                                        show()
-                                    }
-                                } else {
-                                    Toast.makeText(this, "Sign up Failed", Toast.LENGTH_SHORT).show()
+            val isConnected: Boolean = CheckNetworkConnection().networkCheck(this)
+            if (isConnected) {
+                val name = binding.nameEditText.text.toString()
+                val email = binding.emailEditText.text.toString()
+                val password = binding.passwordEditText.text.toString()
+                when {
+                    name.isEmpty() -> {
+                        binding.nameEditTextLayout.error = resources.getString(R.string.name_error_message)
+                    }
+                    email.isEmpty() -> {
+                        binding.emailEditTextLayout.error = resources.getString(R.string.email_error_message)
+                    }
+                    password.isEmpty() -> {
+                        binding.passwordEditTextLayout.error = resources.getString(R.string.password_error_message)
+                    }
+                    password.length < 6 || !Patterns.EMAIL_ADDRESS.matcher(email).matches() -> {
+                        Toast.makeText(this, resources.getString(R.string.registration_failed), Toast.LENGTH_SHORT).show()
+                    }
+                    else -> {
+                        signUpViewModel.registerUser(name, email, password).observe(this) { signUpResult ->
+                            when (signUpResult) {
+                                is Resource.Loading -> {
+                                    binding.progressBar.visibility = View.VISIBLE
                                 }
-                            }
-                            is Resource.Error -> {
-                                binding.progressBar.visibility = View.GONE
-                                Toast.makeText(this, signUpResult.message, Toast.LENGTH_SHORT).show()
+                                is Resource.Success -> {
+                                    if (signUpResult.data?.error == false) {
+                                        binding.progressBar.visibility = View.GONE
+                                        AlertDialog.Builder(this).apply {
+                                            setTitle(signUpResult.data.message)
+                                            setMessage(resources.getString(R.string.account_created))
+                                            setPositiveButton(resources.getString(R.string.ok)) {_, _ ->
+                                                finish()
+                                            }
+                                            create()
+                                            show()
+                                        }
+                                    } else {
+                                        Toast.makeText(this, "Sign up Failed", Toast.LENGTH_SHORT).show()
+                                    }
+                                }
+                                is Resource.Error -> {
+                                    binding.progressBar.visibility = View.GONE
+                                    Toast.makeText(this, signUpResult.message, Toast.LENGTH_SHORT).show()
+                                }
                             }
                         }
                     }
                 }
+            } else {
+                Utils.showAlertNoInternet(this)
             }
         }
     }

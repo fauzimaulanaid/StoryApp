@@ -6,6 +6,8 @@ import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.net.Uri
 import android.os.Environment
+import androidx.appcompat.app.AlertDialog
+import com.fauzimaulana.storyapp.R
 import java.io.*
 import java.text.SimpleDateFormat
 import java.util.*
@@ -48,5 +50,17 @@ object Utils {
         } while (streamLength > 1000000)
         bitmap.compress(Bitmap.CompressFormat.JPEG, compressQuality, FileOutputStream(file))
         return file
+    }
+
+    fun showAlertNoInternet(context: Context) {
+        val alertDialogBuilder = AlertDialog.Builder(context)
+        with(alertDialogBuilder) {
+            setTitle(context.resources.getString(R.string.no_internet_title))
+            setMessage(context.resources.getString(R.string.no_internet_message))
+            setCancelable(false)
+            setPositiveButton(context.getString(R.string.ok)) { dialog, _ -> dialog.cancel() }
+            val alertDialog = alertDialogBuilder.create()
+            alertDialog.show()
+        }
     }
 }

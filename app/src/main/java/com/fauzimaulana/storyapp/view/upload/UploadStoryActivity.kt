@@ -12,9 +12,11 @@ import android.provider.MediaStore
 import android.view.View
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.appcompat.app.AlertDialog
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.core.content.FileProvider
+import com.fauzimaulana.storyapp.R
 import com.fauzimaulana.storyapp.core.utils.Utils
 import com.fauzimaulana.storyapp.core.vo.Resource
 import com.fauzimaulana.storyapp.databinding.ActivityUploadStoryBinding
@@ -162,6 +164,25 @@ class UploadStoryActivity : AppCompatActivity() {
         } else {
             Toast.makeText(this@UploadStoryActivity, "Please choose a picture first.", Toast.LENGTH_LONG).show()
         }
+    }
+
+    private fun showAlertDialog() {
+        val alertDialogBuilder = AlertDialog.Builder(this)
+        with(alertDialogBuilder) {
+            setTitle(resources.getString(R.string.changed_lost))
+            setMessage(resources.getString(R.string.confirmation))
+            setCancelable(false)
+            setPositiveButton(resources.getString(R.string.yes)) { _, _ ->
+                finish()
+            }
+            setNegativeButton(resources.getString(R.string.no)) { dialog, _ -> dialog.cancel()}
+        }
+        val alertDialog = alertDialogBuilder.create()
+        alertDialog.show()
+    }
+
+    override fun onBackPressed() {
+        showAlertDialog()
     }
 
     override fun onSupportNavigateUp(): Boolean {

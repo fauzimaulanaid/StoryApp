@@ -35,7 +35,7 @@
     <string name="hi">Hi %s!</string>
 
     <string name="password_minimum_character">Password must at least 6 character</string>
-    <string name="wrong_email_format">Incorrect email format</string>
+    <string name="wrong_email_format">Invalid email format</string>
 
     <string name="registration_failed">Registration cannot be proceed</string>
 
@@ -59,4 +59,14 @@
     <string name="story_description">Description of your story</string>
     <string name="upload">Upload</string>
     <string name="add_story">Add Story</string>
+    <string name="cancel">Cancel</string>
+    <string name="changed_lost">Change will be lost</string>
+    <string name="confirmation">Are you sure want to cancel?</string>
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
+    <string name="ok">OK</string>
+    <string name="no_internet_title">There is no internet</string>
+    <string name="no_internet_message">Please check your connection!</string>
+    <string name="alert">ALERT</string>
+    <string name="logout_confirmation">Are you sure want to logout?</string>
 </resources>
