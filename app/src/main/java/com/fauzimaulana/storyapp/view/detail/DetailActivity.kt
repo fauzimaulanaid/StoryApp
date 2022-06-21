@@ -10,8 +10,6 @@ import com.fauzimaulana.storyapp.core.domain.model.StoryModel
 import com.fauzimaulana.storyapp.databinding.ActivityDetailBinding
 import com.fauzimaulana.storyapp.databinding.ContentDetailBinding
 import java.text.SimpleDateFormat
-import java.time.LocalDate
-import java.time.LocalDateTime
 import java.util.*
 
 class DetailActivity : AppCompatActivity() {

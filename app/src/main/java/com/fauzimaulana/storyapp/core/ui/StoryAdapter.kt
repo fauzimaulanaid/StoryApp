@@ -1,8 +1,11 @@
 package com.fauzimaulana.storyapp.core.ui
 
+import android.app.Activity
 import android.content.Intent
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.core.app.ActivityOptionsCompat
+import androidx.core.util.Pair
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
@@ -50,10 +53,18 @@ class StoryAdapter: ListAdapter<StoryModel, StoryAdapter.StoryViewHolder>(DIFF_C
                 tvCreatedAt.text = resultCreatedAt
 
                 itemView.setOnClickListener {
+                    val optionsCompat: ActivityOptionsCompat =
+                        ActivityOptionsCompat.makeSceneTransitionAnimation(
+                            itemView.context as Activity,
+                            Pair(tvName, "name"),
+                            Pair(tvCreatedAt, "created"),
+                            Pair(storyImageView, "story")
+                        )
+
                     val intent = Intent(itemView.context, DetailActivity::class.java)
                     intent.putExtra(DetailActivity.EXTRA_DATA, story)
                     intent.putExtra(DetailActivity.EXTRA_INFO, resultCreatedAt)
-                    itemView.context.startActivity(intent)
+                    itemView.context.startActivity(intent, optionsCompat.toBundle())
                 }
             }
         }

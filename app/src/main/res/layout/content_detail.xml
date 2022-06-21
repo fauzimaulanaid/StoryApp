@@ -15,6 +15,7 @@
 
         <TextView
             android:id="@+id/tvName"
+            android:transitionName="name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="18sp"
@@ -26,6 +27,7 @@
 
         <TextView
             android:id="@+id/tvCreatedAt"
+            android:transitionName="created"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/created_at"
@@ -42,6 +44,7 @@
 
         <ImageView
             android:id="@+id/storyImageView"
+            android:transitionName="story"
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:layout_marginTop="16dp"
