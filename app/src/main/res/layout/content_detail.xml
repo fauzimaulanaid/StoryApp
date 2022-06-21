@@ -67,24 +67,45 @@
             app:layout_constraintTop_toBottomOf="@id/storyImageView"/>
 
         <TextView
-            android:id="@+id/tvDateCreated"
+            android:id="@+id/tvTitleDateCreated"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/date_created"
             android:textSize="14sp"
-            android:layout_marginTop="32dp"
+            android:layout_marginTop="16dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tvDescription"/>
+
+        <TextView
+            android:id="@+id/tvDateCreated"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/date_created_wib"
+            android:textSize="11sp"
+            android:layout_marginTop="4dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tvTitleDateCreated"/>
+
+        <TextView
+            android:id="@+id/tvDateCreatedOnServer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/date_created_server_time"
+            android:textSize="11sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tvDateCreated"/>
 
         <TextView
             android:id="@+id/tvCreatedFrom"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/created_from"
-            android:textSize="14sp"
+            android:textSize="11sp"
             android:layout_marginTop="8dp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tvDateCreated"/>
+            app:layout_constraintTop_toBottomOf="@id/tvDateCreatedOnServer"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
