@@ -62,9 +62,20 @@ class UploadStoryActivity : AppCompatActivity() {
             if (storyDescription.toString().isEmpty()) {
                 binding.descriptionEditTextLayout.error = "Please input your story description"
             } else {
-                uploadStoryViewModel.getUser().observe(this) { user ->
-                    uploadStory(storyDescription.toString(), user.token)
+                val alertDialogBuilder = AlertDialog.Builder(this)
+                with(alertDialogBuilder) {
+                    setTitle(resources.getString(R.string.alert))
+                    setMessage(resources.getString(R.string.upload_confirmation))
+                    setCancelable(false)
+                    setPositiveButton(resources.getString(R.string.yes)) { _, _ ->
+                        uploadStoryViewModel.getUser().observe(this@UploadStoryActivity) { user ->
+                            uploadStory(storyDescription.toString(), user.token)
+                        }
+                    }
+                    setNegativeButton(resources.getString(R.string.no)) { dialog, _ -> dialog.cancel() }
                 }
+                val alertDialog = alertDialogBuilder.create()
+                alertDialog.show()
             }
         }
     }
@@ -147,16 +158,20 @@ class UploadStoryActivity : AppCompatActivity() {
 
             uploadStoryViewModel.uploadStory(imageMultiPart, storyDescription, token).observe(this) { upload ->
                 when (upload) {
-                    is Resource.Loading -> binding.progressBar.visibility = View.VISIBLE
+                    is Resource.Loading -> {
+                        binding.progressBar.root.visibility = View.VISIBLE
+                        binding.contentUploadStory.visibility = View.GONE
+                    }
                     is Resource.Success -> {
-                        binding.progressBar.visibility = View.GONE
+                        binding.progressBar.root.visibility = View.GONE
                         Toast.makeText(this@UploadStoryActivity, "Your story uploaded", Toast.LENGTH_SHORT).show()
                         val intent = Intent(this@UploadStoryActivity, MainActivity::class.java)
                         intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
                         startActivity(intent)
                     }
                     is Resource.Error -> {
-                        binding.progressBar.visibility = View.GONE
+                        binding.contentUploadStory.visibility = View.VISIBLE
+                        binding.progressBar.root.visibility = View.GONE
                         Toast.makeText(this@UploadStoryActivity, "Failed to upload your story", Toast.LENGTH_SHORT).show()
                     }
                 }
