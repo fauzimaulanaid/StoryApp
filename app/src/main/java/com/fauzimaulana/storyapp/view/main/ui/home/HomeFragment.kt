@@ -7,6 +7,7 @@ import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.fauzimaulana.storyapp.R
 import com.fauzimaulana.storyapp.core.ui.StoryAdapter
 import com.fauzimaulana.storyapp.core.utils.CheckNetworkConnection
@@ -37,17 +38,22 @@ class HomeFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         setHasOptionsMenu(true)
+        storyAdapter = StoryAdapter()
         showStoryList()
 
         binding.swipeRefreshLayout.setOnRefreshListener {
             showStoryList()
+            storyAdapter.registerAdapterDataObserver(object : RecyclerView.AdapterDataObserver() {
+                override fun onItemRangeInserted(positionStart: Int, itemCount: Int) {
+                    (binding.rvStory.layoutManager as LinearLayoutManager).scrollToPositionWithOffset(positionStart, 0)
+                }
+            })
             binding.swipeRefreshLayout.isRefreshing = false
         }
     }
 
     private fun showStoryList() {
         val isConnected: Boolean = CheckNetworkConnection().networkCheck(requireContext())
-        storyAdapter = StoryAdapter()
         binding.viewNoInternet.root.visibility = View.GONE
         binding.rvStory.visibility = View.VISIBLE
         homeViewModel.getUser().observe(viewLifecycleOwner) { user ->
