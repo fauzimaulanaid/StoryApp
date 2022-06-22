@@ -64,30 +64,30 @@ class DetailActivity : AppCompatActivity() {
     @Suppress("DEPRECATION")
     private fun createDate(date: Date): String {
         val day = when(date.day) {
-            0 -> "Sun"
-            1 -> "Mon"
-            2 -> "Tue"
-            3 -> "Wed"
-            4 -> "Thu"
-            5 -> "Fri"
-            6 -> "Sat"
-            else -> "Unknown"
+            0 -> resources.getString(R.string.sunday)
+            1 -> resources.getString(R.string.monday)
+            2 -> resources.getString(R.string.tuesday)
+            3 -> resources.getString(R.string.wednesday)
+            4 -> resources.getString(R.string.thursday)
+            5 -> resources.getString(R.string.friday)
+            6 -> resources.getString(R.string.saturday)
+            else -> resources.getString(R.string.unknown)
         }
 
         val month = when(date.month) {
-            0 -> "Jan"
-            1 -> "Feb"
-            2 -> "Mar"
-            3 -> "Apr"
-            4 -> "May"
-            5 -> "Jun"
-            6 -> "Jul"
-            7 -> "Aug"
-            8 -> "Sep"
-            9 -> "Oct"
-            10 -> "Nov"
-            11 -> "Dec"
-            else -> "Unknown"
+            0 -> resources.getString(R.string.january)
+            1 -> resources.getString(R.string.february)
+            2 -> resources.getString(R.string.march)
+            3 -> resources.getString(R.string.april)
+            4 -> resources.getString(R.string.may)
+            5 -> resources.getString(R.string.june)
+            6 -> resources.getString(R.string.july)
+            7 -> resources.getString(R.string.august)
+            8 -> resources.getString(R.string.september)
+            9 -> resources.getString(R.string.october)
+            10 -> resources.getString(R.string.november)
+            11 -> resources.getString(R.string.december)
+            else -> resources.getString(R.string.unknown)
         }
 
         val dateCreated = date.date

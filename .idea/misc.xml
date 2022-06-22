@@ -22,7 +22,7 @@
         <entry key="..\:/AndroidStudioProjects/StoryApp/app/src/main/res/layout/activity_upload_story.xml" value="0.18" />
         <entry key="..\:/AndroidStudioProjects/StoryApp/app/src/main/res/layout/activity_welcome.xml" value="0.18" />
         <entry key="..\:/AndroidStudioProjects/StoryApp/app/src/main/res/layout/content_detail.xml" value="0.2623688155922039" />
-        <entry key="..\:/AndroidStudioProjects/StoryApp/app/src/main/res/layout/fragment_account.xml" value="0.33" />
+        <entry key="..\:/AndroidStudioProjects/StoryApp/app/src/main/res/layout/fragment_account.xml" value="0.22" />
         <entry key="..\:/AndroidStudioProjects/StoryApp/app/src/main/res/layout/fragment_dashboard.xml" value="0.19739583333333333" />
         <entry key="..\:/AndroidStudioProjects/StoryApp/app/src/main/res/layout/fragment_home.xml" value="0.22" />
         <entry key="..\:/AndroidStudioProjects/StoryApp/app/src/main/res/layout/item_list_story.xml" value="0.22" />
@@ -33,6 +33,7 @@
         <entry key="..\:/AndroidStudioProjects/StoryApp/app/src/main/res/layout/view_no_internet.xml" value="0.19739583333333333" />
         <entry key="..\:/AndroidStudioProjects/StoryApp/app/src/main/res/menu/bottom_nav_menu.xml" value="0.19739583333333333" />
         <entry key="..\:/AndroidStudioProjects/StoryApp/app/src/main/res/menu/menu_main.xml" value="0.19635416666666666" />
+        <entry key="..\:/AndroidStudioProjects/StoryApp/app/src/main/res/xml/preferences.xml" value="0.22" />
       </map>
     </option>
   </component>

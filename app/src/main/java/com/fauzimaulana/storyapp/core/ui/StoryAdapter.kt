@@ -40,7 +40,7 @@ class StoryAdapter: ListAdapter<StoryModel, StoryAdapter.StoryViewHolder>(DIFF_C
                 val minutes = seconds / 60
                 val hours = minutes / 60
 
-                //Karena jam di server lebih lambat 7 jam, jadi saya mencari real hours
+                //Karena jam di server lebih lambat 7 jam dari WIB, jadi saya mencari real hours
                 val realHours = if (hours.toString() == "0") hours else hours - 7
 
                 val modMinutes = minutes % 60

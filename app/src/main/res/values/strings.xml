@@ -1,49 +1,34 @@
 <resources>
     <string name="app_name">Story App</string>
     <string name="story_app_logo">Story App Logo</string>
-    <string name="login_activity">This is Login Activity</string>
-
     <string name="welcome">Welcome to Story App!</string>
     <string name="welcome_message">You can share your daily activity here then it will be seen by everyone around the world!</string>
     <string name="login">Login</string>
     <string name="sign_up">Sign Up</string>
     <string name="copyright">©2022 Muhammad Fauzi Maulana</string>
     <string name="image_write_the_story">Image write the story</string>
-    <string name="message_login_page">Please input your correct data</string>
     <string name="email">Email</string>
     <string name="password">Password</string>
     <string name="hint_email">Enter your email address</string>
     <string name="hint_password">Enter your password</string>
     <string name="name">Name</string>
     <string name="hint_name">Enter your name</string>
-    <string name="title_activity_main">MainActivity</string>
     <string name="title_home">Home</string>
     <string name="Account">Account</string>
     <string name="logout">Logout</string>
-
     <string name="name_error_message">Please input your name</string>
     <string name="email_error_message">Please input your email</string>
     <string name="password_error_message">Please input password that you want</string>
-
     <string name="congratulations">Congratulations!</string>
-    <string name="account_created">You can login to story app now.</string>
+    <string name="account_created">You can login to story app now</string>
     <string name="next">Next</string>
-
-    <string name="email_not_found">Email not found. Let\'s sign up for free</string>
-    <string name="wrong_password">Incorrect password</string>
     <string name="login_success">Login success. Let\'s share your daily activity!</string>
-    <string name="hi">Hi %s!</string>
-
     <string name="password_minimum_character">Password must at least 6 character</string>
     <string name="wrong_email_format">Invalid email format</string>
-
     <string name="registration_failed">Registration cannot be proceed</string>
-
     <string name="image_story">Image Story</string>
     <string name="created_at">Created at</string>
     <string name="fauzi">Muhammad Fauzi Maulana</string>
-
-    <string name="fetch_failed">Something went wrong, \nPlease check your internet connection.</string>
     <string name="story_created_at">%d hours %d minutes ago</string>
     <string name="story_created_at_only_minutes">%d minutes ago</string>
     <string name="description">Description</string>
@@ -51,7 +36,6 @@
     <string name="date_created_server_time">\u25CB %s GMT (server time)</string>
     <string name="date_created_wib">\u25CB %s WIB (GMT+7)</string>
     <string name="created_from">Created from coordinates: %f, %f</string>
-
     <string name="title_activity_detail">Story Detail</string>
     <string name="preview_image">Preview Image</string>
     <string name="camera">Camera</string>
@@ -59,7 +43,6 @@
     <string name="story_description">Description of your story</string>
     <string name="upload">Upload</string>
     <string name="add_story">Add Story</string>
-    <string name="cancel">Cancel</string>
     <string name="changed_lost">Change will be lost</string>
     <string name="confirmation">Are you sure want to cancel?</string>
     <string name="yes">Yes</string>
@@ -70,4 +53,40 @@
     <string name="alert">ALERT</string>
     <string name="logout_confirmation">Are you sure want to logout?</string>
     <string name="upload_confirmation">Are you sure want to upload this story?</string>
+    <string name="key_language">language</string>
+    <string name="select_language">Select Language</string>
+    <string name="selected_language">Selected Language</string>
+    <string name="english">English</string>
+    <string name="bahasa">Indonesian</string>
+    <string name="user_created">User Created</string>
+    <string name="story_description_error">Please input your story description</string>
+    <string name="choose_picture_first">Please choose a picture first</string>
+    <string name="story_uploaded">Your story uploaded</string>
+    <string name="story_upload_failed">Failed to upload your story</string>
+    <string name="choose_picture">Choose a Picture</string>
+    <string name="permission_camera_rejected">Did not get permission to access camera</string>
+    <string name="unknown">Unknown</string>
+    <string name="invalid_email_password">Invalid email nor password</string>
+    <string name="login_first">Please login first</string>
+    <string name="signup_failed">Sign up Failed</string>
+    <string name="email_used">Email already registered</string>
+    <string name="sunday">Sun</string>
+    <string name="monday">Mon</string>
+    <string name="tuesday">Tue</string>
+    <string name="wednesday">Wed</string>
+    <string name="thursday">Thu</string>
+    <string name="friday">Fri</string>
+    <string name="saturday">Sat</string>
+    <string name="january">Jan</string>
+    <string name="february">Feb</string>
+    <string name="march">Mar</string>
+    <string name="april">Apr</string>
+    <string name="may">May</string>
+    <string name="june">Jun</string>
+    <string name="july">Jul</string>
+    <string name="august">Aug</string>
+    <string name="september">Sep</string>
+    <string name="october">Oct</string>
+    <string name="november">Nov</string>
+    <string name="december">Dec</string>
 </resources>

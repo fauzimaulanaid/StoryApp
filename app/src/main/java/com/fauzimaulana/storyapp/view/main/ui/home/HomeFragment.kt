@@ -52,7 +52,7 @@ class HomeFragment : Fragment() {
         binding.rvStory.visibility = View.VISIBLE
         homeViewModel.getUser().observe(viewLifecycleOwner) { user ->
             if (!user.isLogin) {
-                Toast.makeText(context, "Please Login First", Toast.LENGTH_SHORT).show()
+                Toast.makeText(context, resources.getString(R.string.login_first), Toast.LENGTH_SHORT).show()
             } else if (isConnected) {
                 homeViewModel.getAllStories(user.token).observe(viewLifecycleOwner) { stories ->
                     when (stories) {
@@ -63,7 +63,7 @@ class HomeFragment : Fragment() {
                         }
                         is Resource.Error -> {
                             binding.shimmerProgressBar.visibility = View.GONE
-                            Toast.makeText(context, stories.message, Toast.LENGTH_SHORT).show()
+                            Toast.makeText(context, resources.getString(R.string.user_created), Toast.LENGTH_SHORT).show()
                         }
                     }
                 }

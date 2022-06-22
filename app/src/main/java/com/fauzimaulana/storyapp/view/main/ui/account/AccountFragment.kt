@@ -8,6 +8,7 @@ import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
 import com.fauzimaulana.storyapp.R
 import com.fauzimaulana.storyapp.databinding.FragmentAccountBinding
+import com.fauzimaulana.storyapp.view.preference.PreferenceFragment
 import org.koin.android.viewmodel.ext.android.viewModel
 
 class AccountFragment() : Fragment() {
@@ -30,6 +31,7 @@ class AccountFragment() : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         setupViewModel()
         setupAction()
+        requireActivity().supportFragmentManager.beginTransaction().add(R.id.preferenceLanguage, PreferenceFragment()).commit()
     }
 
     private fun setupViewModel() {

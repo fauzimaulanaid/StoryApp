@@ -107,13 +107,13 @@ class SignUpActivity : AppCompatActivity() {
                                             show()
                                         }
                                     } else {
-                                        Toast.makeText(this, "Sign up Failed", Toast.LENGTH_SHORT).show()
+                                        Toast.makeText(this, resources.getString(R.string.signup_failed), Toast.LENGTH_SHORT).show()
                                     }
                                 }
                                 is Resource.Error -> {
                                     binding.progressBar.root.visibility = View.GONE
                                     binding.contentSignUp.visibility = View.VISIBLE
-                                    Toast.makeText(this, "Email already registered", Toast.LENGTH_SHORT).show()
+                                    Toast.makeText(this, resources.getString(R.string.email_used), Toast.LENGTH_SHORT).show()
                                 }
                             }
                         }

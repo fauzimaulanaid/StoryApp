@@ -93,7 +93,7 @@ class LoginActivity : AppCompatActivity() {
                                 is Resource.Error -> {
                                     binding.progressBar.root.visibility = View.GONE
                                     binding.contentLogin.visibility = View.VISIBLE
-                                    Toast.makeText(this, "Invalid email nor password", Toast.LENGTH_SHORT).show()
+                                    Toast.makeText(this, resources.getString(R.string.invalid_email_password), Toast.LENGTH_SHORT).show()
                                 }
                             }
                         }

@@ -16,6 +16,7 @@ import androidx.appcompat.app.AlertDialog
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.core.content.FileProvider
+import com.ceylonlabs.imageviewpopup.ImagePopup
 import com.fauzimaulana.storyapp.R
 import com.fauzimaulana.storyapp.core.utils.Utils
 import com.fauzimaulana.storyapp.core.vo.Resource
@@ -57,10 +58,20 @@ class UploadStoryActivity : AppCompatActivity() {
         binding.buttonGallery.setOnClickListener {
             startGallery()
         }
+        binding.previewImageView.setOnClickListener {
+            if (getFile != null) {
+                val previewImage = getFile as File
+                val imagePopUp = ImagePopup(this)
+                imagePopUp.initiatePopupWithGlide(previewImage.path)
+                imagePopUp.viewPopup()
+            } else {
+                Toast.makeText(this, resources.getString(R.string.choose_picture_first), Toast.LENGTH_LONG).show()
+            }
+        }
         binding.buttonUpload.setOnClickListener {
             val storyDescription = binding.descriptionEditText.text
             if (storyDescription.toString().isEmpty()) {
-                binding.descriptionEditTextLayout.error = "Please input your story description"
+                binding.descriptionEditTextLayout.error = resources.getString(R.string.story_description_error)
             } else {
                 val alertDialogBuilder = AlertDialog.Builder(this)
                 with(alertDialogBuilder) {
@@ -92,7 +103,7 @@ class UploadStoryActivity : AppCompatActivity() {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults)
         if (requestCode == REQUEST_CODE_PERMISSION) {
             if (!allPermissionGranted()) {
-                Toast.makeText(this, "Did not get permission to access camera", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, resources.getString(R.string.permission_camera_rejected), Toast.LENGTH_SHORT).show()
                 finish()
             }
         }
@@ -129,7 +140,7 @@ class UploadStoryActivity : AppCompatActivity() {
         val intent = Intent()
         intent.action = ACTION_GET_CONTENT
         intent.type = "image/*"
-        val chooser = Intent.createChooser(intent, "Choose a Picture")
+        val chooser = Intent.createChooser(intent, resources.getString(R.string.choose_picture))
         launcherIntentGallery.launch(chooser)
     }
 
@@ -164,7 +175,7 @@ class UploadStoryActivity : AppCompatActivity() {
                     }
                     is Resource.Success -> {
                         binding.progressBar.root.visibility = View.GONE
-                        Toast.makeText(this@UploadStoryActivity, "Your story uploaded", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(this@UploadStoryActivity, resources.getString(R.string.story_uploaded), Toast.LENGTH_SHORT).show()
                         val intent = Intent(this@UploadStoryActivity, MainActivity::class.java)
                         intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
                         startActivity(intent)
@@ -172,12 +183,12 @@ class UploadStoryActivity : AppCompatActivity() {
                     is Resource.Error -> {
                         binding.contentUploadStory.visibility = View.VISIBLE
                         binding.progressBar.root.visibility = View.GONE
-                        Toast.makeText(this@UploadStoryActivity, "Failed to upload your story", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(this@UploadStoryActivity, resources.getString(R.string.story_upload_failed), Toast.LENGTH_SHORT).show()
                     }
                 }
             }
         } else {
-            Toast.makeText(this@UploadStoryActivity, "Please choose a picture first.", Toast.LENGTH_LONG).show()
+            Toast.makeText(this@UploadStoryActivity, resources.getString(R.string.choose_picture_first), Toast.LENGTH_LONG).show()
         }
     }
 
