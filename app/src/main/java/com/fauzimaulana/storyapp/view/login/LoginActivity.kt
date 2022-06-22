@@ -66,15 +66,17 @@ class LoginActivity : AppCompatActivity() {
                         loginViewModel.userLogin(email, password).observe(this) { loginResult ->
                             when (loginResult) {
                                 is Resource.Loading -> {
-                                    binding.progressBar.visibility = View.VISIBLE
+                                    binding.contentLogin.visibility = View.GONE
+                                    binding.progressBar.root.visibility = View.VISIBLE
                                 }
                                 is Resource.Success -> {
-                                    binding.progressBar.visibility = View.GONE
+                                    binding.progressBar.root.visibility = View.GONE
                                     if (loginResult.data?.error == false) {
                                         loginViewModel.saveUser(UserModel(loginResult.data.loginResult.name, email, password, loginResult.data.loginResult.token, true))
                                         AlertDialog.Builder(this).apply {
                                             setTitle(resources.getString(R.string.congratulations))
                                             setMessage(resources.getString(R.string.login_success))
+                                            setCancelable(false)
                                             setPositiveButton(resources.getString(R.string.ok)) {_, _ ->
                                                 val intent = Intent(context, MainActivity::class.java)
                                                 intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
@@ -89,7 +91,8 @@ class LoginActivity : AppCompatActivity() {
                                     }
                                 }
                                 is Resource.Error -> {
-                                    binding.progressBar.visibility = View.GONE
+                                    binding.progressBar.root.visibility = View.GONE
+                                    binding.contentLogin.visibility = View.VISIBLE
                                     Toast.makeText(this, "Invalid email nor password", Toast.LENGTH_SHORT).show()
                                 }
                             }

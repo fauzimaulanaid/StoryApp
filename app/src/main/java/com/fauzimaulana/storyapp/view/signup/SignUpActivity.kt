@@ -90,14 +90,16 @@ class SignUpActivity : AppCompatActivity() {
                         signUpViewModel.registerUser(name, email, password).observe(this) { signUpResult ->
                             when (signUpResult) {
                                 is Resource.Loading -> {
-                                    binding.progressBar.visibility = View.VISIBLE
+                                    binding.contentSignUp.visibility = View.GONE
+                                    binding.progressBar.root.visibility = View.VISIBLE
                                 }
                                 is Resource.Success -> {
                                     if (signUpResult.data?.error == false) {
-                                        binding.progressBar.visibility = View.GONE
+                                        binding.progressBar.root.visibility = View.GONE
                                         AlertDialog.Builder(this).apply {
                                             setTitle(signUpResult.data.message)
                                             setMessage(resources.getString(R.string.account_created))
+                                            setCancelable(false)
                                             setPositiveButton(resources.getString(R.string.ok)) {_, _ ->
                                                 finish()
                                             }
@@ -109,8 +111,9 @@ class SignUpActivity : AppCompatActivity() {
                                     }
                                 }
                                 is Resource.Error -> {
-                                    binding.progressBar.visibility = View.GONE
-                                    Toast.makeText(this, signUpResult.message, Toast.LENGTH_SHORT).show()
+                                    binding.progressBar.root.visibility = View.GONE
+                                    binding.contentSignUp.visibility = View.VISIBLE
+                                    Toast.makeText(this, "Email already registered", Toast.LENGTH_SHORT).show()
                                 }
                             }
                         }
