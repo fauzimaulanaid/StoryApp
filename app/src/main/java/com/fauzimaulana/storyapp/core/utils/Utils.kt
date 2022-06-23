@@ -59,8 +59,8 @@ object Utils {
             setMessage(context.resources.getString(R.string.no_internet_message))
             setCancelable(false)
             setPositiveButton(context.getString(R.string.ok)) { dialog, _ -> dialog.cancel() }
-            val alertDialog = alertDialogBuilder.create()
-            alertDialog.show()
         }
+        val alertDialog = alertDialogBuilder.create()
+        alertDialog.show()
     }
 }
