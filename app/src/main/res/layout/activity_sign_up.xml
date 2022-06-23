@@ -156,7 +156,7 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/passwordTextView"
-                app:passwordToggleEnabled="true"
+                app:passwordToggleEnabled="false"
                 app:startIconDrawable="@drawable/ic_baseline_lock_24">
 
                 <com.fauzimaulana.storyapp.core.customview.MyPasswordEditText
@@ -166,7 +166,6 @@
                     android:ems="10"
                     android:inputType="textPassword"
                     android:hint="@string/hint_password"
-                    app:passwordToggleEnabled="true"
                     tools:ignore="SpeakableTextPresentCheck"/>
 
             </com.google.android.material.textfield.TextInputLayout>
