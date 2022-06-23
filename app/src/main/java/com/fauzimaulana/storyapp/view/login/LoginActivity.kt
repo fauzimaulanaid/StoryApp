@@ -60,7 +60,7 @@ class LoginActivity : AppCompatActivity() {
                         binding.emailEditTextLayout.error = resources.getString(R.string.email_error_message)
                     }
                     password.isEmpty() -> {
-                        binding.passwordEditTextLayout.error = resources.getString(R.string.password_error_message)
+                        binding.passwordEditTextLayout.error = resources.getString(R.string.hint_password)
                     }
                     else -> {
                         loginViewModel.userLogin(email, password).observe(this) { loginResult ->
@@ -88,6 +88,7 @@ class LoginActivity : AppCompatActivity() {
                                         }
                                     } else {
                                         Toast.makeText(this, loginResult.data?.message, Toast.LENGTH_SHORT).show()
+                                        binding.contentLogin.visibility = View.VISIBLE
                                     }
                                 }
                                 is Resource.Error -> {

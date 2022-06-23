@@ -18,7 +18,7 @@
     <string name="logout">Logout</string>
     <string name="name_error_message">Please input your name</string>
     <string name="email_error_message">Please input your email</string>
-    <string name="password_error_message">Please input password that you want</string>
+    <string name="password_message">Please input password that you want</string>
     <string name="congratulations">Congratulations!</string>
     <string name="account_created">You can login to story app now</string>
     <string name="next">Next</string>
@@ -31,6 +31,7 @@
     <string name="fauzi">Muhammad Fauzi Maulana</string>
     <string name="story_created_at">%d hours %d minutes ago</string>
     <string name="story_created_at_only_minutes">%d minutes ago</string>
+    <string name="just_now">Just now</string>
     <string name="description">Description</string>
     <string name="date_created">Date Created:</string>
     <string name="date_created_server_time">\u25CB %s GMT (server time)</string>

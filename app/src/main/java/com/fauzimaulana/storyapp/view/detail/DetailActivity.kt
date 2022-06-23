@@ -48,6 +48,7 @@ class DetailActivity : AppCompatActivity() {
                     .error(R.drawable.ic_error))
                 .into(binding.storyImageView)
             binding.tvDescription.text = story.description
+
             val formatter = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'")
             val date = formatter.parse(story.createAt)
             val calendar = Calendar.getInstance()
@@ -97,7 +98,7 @@ class DetailActivity : AppCompatActivity() {
         val hours = if (date.hours.toString().length == 1) "0${date.hours}" else date.hours
         val minutes = if (date.minutes.toString().length == 1) "0${date.minutes}" else date.minutes
 
-        return "$day $month $dateCreated 20$year at $hours.$minutes"
+        return "$day $month $dateCreated 20$year | $hours.$minutes"
     }
 
     override fun onSupportNavigateUp(): Boolean {

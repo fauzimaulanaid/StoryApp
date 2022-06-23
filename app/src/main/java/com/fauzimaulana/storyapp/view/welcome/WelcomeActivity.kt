@@ -12,7 +12,6 @@ import android.view.WindowManager
 import com.fauzimaulana.storyapp.databinding.ActivityWelcomeBinding
 import com.fauzimaulana.storyapp.view.login.LoginActivity
 import com.fauzimaulana.storyapp.view.signup.SignUpActivity
-import kotlin.math.log
 
 class WelcomeActivity : AppCompatActivity() {
 
@@ -22,17 +21,6 @@ class WelcomeActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         _binding = ActivityWelcomeBinding.inflate(layoutInflater)
-//        installSplashScreen().setOnExitAnimationListener {splashScreenView ->
-//            val alpha = ObjectAnimator.ofFloat(
-//                splashScreenView.view,
-//                View.ALPHA,
-//                11f,
-//                0f
-//            )
-//            alpha.duration = 3000L
-//            alpha.doOnEnd { splashScreenView.remove() }
-//            alpha.start()
-//        }
         setContentView(binding.root)
         setupView()
         playAnimation()

@@ -32,25 +32,30 @@ class StoryAdapter: ListAdapter<StoryModel, StoryAdapter.StoryViewHolder>(DIFF_C
                 tvName.text = story.name
 
                 val formatter = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'")
-                val oldTime = formatter.parse(story.createAt)
+                val timeCreatedServerTime = formatter.parse(story.createAt)
+                //Karena jam di server lebih lambat 7 jam dari WIB, jadi saya mencari real hours yaitu GMT+7
+                val calendar = Calendar.getInstance()
+                calendar.time = timeCreatedServerTime!!
+                calendar.add(Calendar.HOUR, 7)
+
                 val currentDate = Date()
 
-                val diff = currentDate.time - oldTime!!.time
+                val diff = currentDate.time - calendar.time.time
                 val seconds = diff / 1000
                 val minutes = seconds / 60
                 val hours = minutes / 60
 
-                //Karena jam di server lebih lambat 7 jam dari WIB, jadi saya mencari real hours
-                val realHours = if (hours.toString() == "0") hours else hours - 7
-
                 val modMinutes = minutes % 60
 
-                val resultCreatedAt: String = if (realHours.toString() == "0") {
+                val resultCreatedAt: String = if (hours.toString() == "0") {
                     itemView.context.getString(R.string.story_created_at_only_minutes, modMinutes)
                 } else {
-                    itemView.context.getString(R.string.story_created_at, realHours, modMinutes)
+                    itemView.context.getString(R.string.story_created_at, hours, modMinutes)
                 }
-                tvCreatedAt.text = resultCreatedAt
+
+                val finalCreatedAt: String = if (seconds <= 60) itemView.context.getString(R.string.just_now) else resultCreatedAt
+
+                tvCreatedAt.text = finalCreatedAt
 
                 itemView.setOnClickListener {
                     val optionsCompat: ActivityOptionsCompat =
@@ -63,7 +68,7 @@ class StoryAdapter: ListAdapter<StoryModel, StoryAdapter.StoryViewHolder>(DIFF_C
 
                     val intent = Intent(itemView.context, DetailActivity::class.java)
                     intent.putExtra(DetailActivity.EXTRA_DATA, story)
-                    intent.putExtra(DetailActivity.EXTRA_INFO, resultCreatedAt)
+                    intent.putExtra(DetailActivity.EXTRA_INFO, finalCreatedAt)
                     itemView.context.startActivity(intent, optionsCompat.toBundle())
                 }
             }

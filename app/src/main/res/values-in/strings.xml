@@ -19,7 +19,7 @@
     <string name="logout">Keluar</string>
     <string name="name_error_message">Harap masukkan nama kamu ya</string>
     <string name="email_error_message">Harap masukkan alamat email kamu ya</string>
-    <string name="password_error_message">Harap masukkan kata sandi yang kamu inginkan</string>
+    <string name="password_message">Harap masukkan kata sandi yang kamu inginkan</string>
     <string name="congratulations">Selamat!</string>
     <string name="account_created">Sekarang kamu bisa masuk ke story app</string>
     <string name="next">Selanjutnya</string>
@@ -32,6 +32,7 @@
     <string name="fauzi">Muhammad Fauzi Maulana</string>
     <string name="story_created_at">%d jam %d menit yang lalu</string>
     <string name="story_created_at_only_minutes">%d menit yang lalu</string>
+    <string name="just_now">Baru saja</string>
     <string name="description">Deskripsi</string>
     <string name="date_created">Dibuat tanggal:</string>
     <string name="date_created_server_time">\u25CB %s GMT (waktu server)</string>

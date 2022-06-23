@@ -81,7 +81,7 @@ class SignUpActivity : AppCompatActivity() {
                         binding.emailEditTextLayout.error = resources.getString(R.string.email_error_message)
                     }
                     password.isEmpty() -> {
-                        binding.passwordEditTextLayout.error = resources.getString(R.string.password_error_message)
+                        binding.passwordEditTextLayout.error = resources.getString(R.string.password_message)
                     }
                     password.length < 6 || !Patterns.EMAIL_ADDRESS.matcher(email).matches() -> {
                         Toast.makeText(this, resources.getString(R.string.registration_failed), Toast.LENGTH_SHORT).show()
@@ -94,8 +94,8 @@ class SignUpActivity : AppCompatActivity() {
                                     binding.progressBar.root.visibility = View.VISIBLE
                                 }
                                 is Resource.Success -> {
+                                    binding.progressBar.root.visibility = View.GONE
                                     if (signUpResult.data?.error == false) {
-                                        binding.progressBar.root.visibility = View.GONE
                                         AlertDialog.Builder(this).apply {
                                             setTitle(signUpResult.data.message)
                                             setMessage(resources.getString(R.string.account_created))
@@ -108,6 +108,7 @@ class SignUpActivity : AppCompatActivity() {
                                         }
                                     } else {
                                         Toast.makeText(this, resources.getString(R.string.signup_failed), Toast.LENGTH_SHORT).show()
+                                        binding.contentSignUp.visibility = View.VISIBLE
                                     }
                                 }
                                 is Resource.Error -> {

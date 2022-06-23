@@ -5,6 +5,7 @@ import android.text.Editable
 import android.text.TextWatcher
 import android.util.AttributeSet
 import androidx.appcompat.widget.AppCompatEditText
+import com.fauzimaulana.storyapp.R
 
 class MyPasswordEditText: AppCompatEditText {
     constructor(context: Context): super(context) {
@@ -26,7 +27,7 @@ class MyPasswordEditText: AppCompatEditText {
             }
 
             override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {
-                if (s.toString().length < 6) error = "Password must at least 6 character"
+                if (s.toString().length < 6) error = resources.getString(R.string.password_minimum_character)
             }
 
             override fun afterTextChanged(s: Editable) {

@@ -11,7 +11,7 @@ import com.fauzimaulana.storyapp.databinding.FragmentAccountBinding
 import com.fauzimaulana.storyapp.view.preference.PreferenceFragment
 import org.koin.android.viewmodel.ext.android.viewModel
 
-class AccountFragment() : Fragment() {
+class AccountFragment : Fragment() {
 
     private var _binding: FragmentAccountBinding? = null
     private val binding get() = _binding!!
